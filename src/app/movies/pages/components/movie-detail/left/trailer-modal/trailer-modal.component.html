@@ -1,0 +1,51 @@
+<a href="" data-toggle="modal" data-target="#trailer-modal">
+  <small
+    class="badge badge-pill badge-warning mr-2"
+    tooltip="Trailer"
+    (click)="openDialog()"
+  >
+    <i class="fa fa-film mr-1" aria-hidden="true"></i>
+    Trailer
+  </small>
+</a>
+
+<div
+  (click)="closeDialog()"
+  class="modal fade bd-trailer-modal"
+  id="trailer-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="trailer-modal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content text-dark">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close order-1"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <h5 class="modal-title" id="TrailerModal">
+          {{ movie.title }} Movie's Trailer
+        </h5>
+      </div>
+      <div class="modal-body" *ngIf="video">
+        <div
+          class="embed-responsive embed-responsive-16by9"
+          *ngIf="video.site === 'YouTube'"
+        >
+          <iframe
+            *ngIf="video.key"
+            class="embed-responsive-item"
+            [src]="videoPathSrc | safe"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

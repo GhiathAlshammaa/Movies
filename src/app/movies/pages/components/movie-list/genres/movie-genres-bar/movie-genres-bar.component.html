@@ -1,0 +1,13 @@
+<div class="genres mb-4">
+  <h3 class="text-danger">Genres:</h3>
+  <div class="d-flex flex-row flex-wrap">
+    <div class="m-r-md mr-2" *ngFor="let genre of genres$ | async">
+      <a
+        [routerLink]="['genres', genre.id, genre.name]"
+        class="badge badge-danger"
+      >
+        {{ genre.name }}
+      </a>
+    </div>
+  </div>
+</div>

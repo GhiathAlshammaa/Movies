@@ -1,0 +1,25 @@
+<div class="col-md-12">
+  <h3 class="text-danger">
+    {{ movie.title }}
+  </h3>
+
+  <p>{{ movie.tagline }}</p>
+  <div class="genres">
+    <a
+      [routerLink]="['/movies/genres', genre.id, genre.name]"
+      *ngFor="let genre of movie.genres"
+      class="badge badge-danger m-r-md mr-2"
+    >
+      {{ genre.name }}
+    </a>
+  </div>
+  <h3 class="text-danger mt-4">Overview</h3>
+  <p>
+    {{ movie.overview }}
+  </p>
+
+  <!-- Staff -->
+  <app-movie-staff [movieId]="movie.id"></app-movie-staff>
+  <!-- Similar Movies -->
+  <app-movie-similar-grid [movieId]="movie.id"></app-movie-similar-grid>
+</div>

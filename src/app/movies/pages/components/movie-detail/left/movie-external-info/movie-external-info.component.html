@@ -1,0 +1,103 @@
+<div class="container">
+  <img
+    width="100%"
+    src="{{ imgPath + movie.poster_path }}"
+    alt="No Photo"
+    *ngIf="movie.poster_path"
+  />
+  <img
+    width="100%"
+    [src]="noPhotoSrc"
+    alt="No Photo"
+    *ngIf="!movie.poster_path"
+  />
+
+  <div class="mt-2 d-flex justify-content-between">
+    <div>
+      <a href="{{ movie.homepage }}" target="_blank">
+        <small
+          class="badge badge-pill badge-warning mr-2"
+          *ngIf="movie.homepage"
+          tooltip="IMDB Rate"
+        >
+          <i class="fa fa-external-link mr-1" aria-hidden="true"></i>
+          Website
+        </small>
+      </a>
+
+      <app-trailer-modal [movie]="movie"></app-trailer-modal>
+    </div>
+    <div>
+      <a
+        href="https://www.imdb.com/title/{{ movie.imdb_id }}"
+        target="_blank"
+        class=""
+      >
+        <small
+          class="badge badge-pill badge-warning"
+          *ngIf="movie.vote_average"
+          tooltip="IMDB Rate"
+        >
+          {{ movie.vote_average }}
+          <i class="fa fa-star"></i>
+        </small>
+      </a>
+    </div>
+  </div>
+  <div
+    class="d-flex justify-content-between mt-2"
+    *ngIf="movie.production_countries as countries"
+  >
+    <small class="badge badge-warning p-1 text-left info-box"
+      ><i class="fa fa-suitcase mr-1"></i>Production Countries</small
+    >
+    <ul class="d-flex list-unstyled mb-0">
+      <li *ngFor="let country of countries">
+        <!-- <span class="mr-1">{{ country.iso_3166_1 }}</span> -->
+        <span class="flag-icon flag-icon-{{ country.iso_3166_1 }} mr-1"></span>
+      </li>
+    </ul>
+  </div>
+
+  <div
+    class="d-flex justify-content-between mt-2"
+    *ngIf="movie.original_language"
+  >
+    <small class="badge badge-warning p-1 text-left info-box"
+      ><i class="fa fa-globe mr-1"></i>Original Language
+    </small>
+    <img
+      class="langImg ml-1 mr-1"
+      alt="{{ langName }}"
+      src="https://unpkg.com/language-icons/icons/{{ langFlag }}.svg"
+    />
+  </div>
+
+  <div
+    class="d-flex justify-content-between mt-2"
+    *ngIf="streams$ | async as streams"
+  >
+    <small
+      class="
+        d-flex
+        align-items-center
+        badge badge-warning
+        p-1
+        text-left
+        info-box
+      "
+      ><i class="fa fa-eye mr-1"></i> Watch On
+    </small>
+    <div class="d-flex">
+      <div *ngFor="let stream of streams" class="ml-1 mr-1">
+        <a href="{{ stream.url }}" target="_blank">
+          <img
+            class="logoImg"
+            src="{{ imgPath + stream.logo_path }}"
+            alt="No Photo"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

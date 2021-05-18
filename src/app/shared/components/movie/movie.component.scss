@@ -1,0 +1,53 @@
+img {
+    width: 100%;
+}
+.card .card-title {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    color: #E50914;
+    text-decoration: none;
+}
+
+.title:hover {
+    background-color: #E50914;
+    color: white;
+}
+
+.release-date {
+    color: black;
+}
+
+.view:hover {
+    text-decoration: underline;
+}
+
+.production-countries {
+    color: E50914;
+}
+
+.production-countries-title {
+    color: black;
+    font-weight: bold;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content {
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

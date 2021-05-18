@@ -1,0 +1,11 @@
+.logo{
+    color: #E50914;
+    font-weight: 900;
+        
+        &:hover, &:active, &:visited{
+            text-decoration: none;
+            color: #E50914 !important;
+        }
+
+}
+

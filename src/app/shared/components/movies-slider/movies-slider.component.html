@@ -1,0 +1,17 @@
+<div>
+  <div class="slider-container">
+    <div class="slider" *ngIf="sliderMovies$ | async">
+      <ng-image-slider
+        [imagePopup]="false"
+        [images]="sliderMovies$ | async"
+        [animationSpeed]="animationSpeed"
+        [slideImage]="slideImage"
+        [imageSize]="imageSize"
+        [showArrow]="true"
+        [showVideoControls]="false"
+        (imageClick)="imageClickHandle($event)"
+        #nav
+      ></ng-image-slider>
+    </div>
+  </div>
+</div>

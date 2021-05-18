@@ -1,0 +1,18 @@
+<h3 class="text-danger mt-4">Similar Movies</h3>
+<div
+  class="row is-flex bg-dark ml-0 mr-0 pb-2 pr-3 pl-3 pt-4"
+  *ngIf="movieSimilar$ | async as movieSimilar"
+>
+  <div class="col-md-2 mb-4" *ngFor="let movie of movieSimilar">
+    <app-movie [movie]="movie" [releaseYear]="true"></app-movie>
+  </div>
+
+  <div class="col-md-12" *ngIf="movieSimilar.length <= 0">
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+      <div class="container">
+        <h1 class="display-4">Oops!</h1>
+        <p class="lead">There are no similar Movies</p>
+      </div>
+    </div>
+  </div>
+</div>

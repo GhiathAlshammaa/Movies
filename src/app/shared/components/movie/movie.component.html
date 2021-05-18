@@ -1,0 +1,73 @@
+<div
+  class="d-flex card p-2 h-100 flex-column justify-content-between"
+  *ngIf="movie"
+>
+  <div>
+    <div class="card-header text-danger text-center font-weight-bold content">
+      <a class="truncate" [routerLink]="['/movies', movie.id]">
+        {{ movie.title }}
+      </a>
+    </div>
+    <img
+      width="100%"
+      src="{{ imgPath + movie.poster_path }}"
+      alt="{{ movie.title }}"
+      *ngIf="movie.poster_path"
+    />
+    <img
+      width="100%"
+      [src]="noPhotoSrc"
+      alt="No Photo"
+      *ngIf="!movie.poster_path"
+    />
+  </div>
+  <div class="caption pt-3">
+    <div class="release-date d-flex">
+      <div><b>Release Date: </b></div>
+      <div class="ml-auto pr-2">
+        {{ releaseYearValue ? releaseYearValue : movie.release_date }}
+      </div>
+    </div>
+
+    <div
+      class="production-countries d-flex"
+      *ngIf="movie.production_countries as countries"
+    >
+      <div class="d-flex production-countries-title">Production Countries:</div>
+      <div class="ml-auto">
+        <span
+          *ngFor="let country of countries"
+          [ngClass]="
+            country.iso_3166_1
+              ? 'flag-icon flag-icon-' + country.iso_3166_1 + ' mr-2'
+              : ''
+          "
+        ></span>
+      </div>
+    </div>
+
+    <div>
+      <a class="view" [routerLink]="['/movies', movie.id]"
+        >View details &raquo;</a
+      >
+      <div class="float-right">
+        <small
+          class="badge badge-pill badge-info mr-1"
+          *ngIf="movie.sinceHowManyDays"
+          tooltip="Since How many Days?"
+        >
+          {{ movie.sinceHowManyDays }}
+          <i class="fa fa-calendar-check-o fa-1x"></i>
+        </small>
+        <small
+          class="badge badge-pill badge-warning"
+          *ngIf="movie.vote_average"
+          tooltip="IMDB Rate"
+        >
+          {{ movie.vote_average }}
+          <i class="fa fa-star fa-1x"></i>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
