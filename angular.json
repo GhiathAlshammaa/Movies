@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Netflix": {
+    "Mse": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -104,26 +104,26 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mse:build",
+            "browserTarget": "Mse:build",
             "port": 5200
           },
           "configurations": {
             "dev": {
-              "browserTarget": "mse:build:dev"
+              "browserTarget": "Mse:build:dev"
             },
             "prod": {
-              "browserTarget": "mse:build:prod"
+              "browserTarget": "Mse:build:prod"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mse:build"
+            "browserTarget": "Mse:build"
           }
         }
       }
     }
   },
-  "defaultProject": "MSE"
+  "defaultProject": "Mse"
 }

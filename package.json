@@ -1,5 +1,5 @@
 {
-  "name": "netflix",
+  "name": "mse",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,7 @@
     "start:dev": "ng serve --c=dev",
     "build:dev": "ng build --c=dev",
     "start:prod": "ng serve --c=prod",
-    "build:prod": "ng build --c=prod",
+    "build:prod": "ng build --c=prod --aot",
     "build:prod:path": "ng build --base-href /light/ --c=prod"
   },
   "private": true,
