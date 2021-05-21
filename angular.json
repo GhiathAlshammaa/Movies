@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Mse": {
+    "Movies": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -41,7 +41,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mse",
+            "outputPath": "dist/movies",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -104,26 +104,26 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Mse:build",
+            "browserTarget": "Movies:build",
             "port": 5200
           },
           "configurations": {
             "dev": {
-              "browserTarget": "Mse:build:dev"
+              "browserTarget": "Movies:build:dev"
             },
             "prod": {
-              "browserTarget": "Mse:build:prod"
+              "browserTarget": "Movies:build:prod"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Mse:build"
+            "browserTarget": "Movies:build"
           }
         }
       }
     }
   },
-  "defaultProject": "Mse"
+  "defaultProject": "Movies"
 }
