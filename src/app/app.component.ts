@@ -14,7 +14,7 @@ import {
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  title = 'MSE';
+  title = 'Movies';
   loading = true;
 
   constructor(private router: Router) {
