@@ -24,10 +24,11 @@
           Website
         </small>
       </a>
-
-      <app-trailer-modal [movie]="movie"></app-trailer-modal>
     </div>
-    <div>
+    <app-trailer-modal [movie]="movie"></app-trailer-modal>
+
+    <!-- 
+      <div>
       <a
         href="https://www.imdb.com/title/{{ movie.imdb_id }}"
         target="_blank"
@@ -42,7 +43,7 @@
           <i class="fa fa-star"></i>
         </small>
       </a>
-    </div>
+    </div> -->
   </div>
   <div class="mt-1" *ngIf="movie.production_countries as countries">
     <small class="d-flex justify-content-between p-1">

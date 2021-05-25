@@ -1,7 +1,26 @@
 <div class="col-md-12">
-  <h3 class="text-danger">
-    {{ movie.title }}
-  </h3>
+  <div class="d-flex">
+    <h3 class="text-danger mr-2">
+      {{ movie.title }}
+    </h3>
+    <!-- <div>
+      {{ movie.vote_average }}
+      <i class="fa fa-star fa-lg"></i>
+    </div> -->
+    <a
+      href="https://www.imdb.com/title/{{ movie.imdb_id }}"
+      target="_blank"
+      class=""
+    >
+      <small
+        class="d-flex align-items-start text-light p-2"
+        *ngIf="movie.vote_average"
+      >
+        <i class="fa fa-star fa-2x mr-2 text-warning"></i>
+        <h5>{{ movie.vote_average }}</h5>
+      </small>
+    </a>
+  </div>
 
   <p>{{ movie.tagline }}</p>
   <div class="genres">
