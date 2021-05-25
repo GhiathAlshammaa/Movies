@@ -44,60 +44,53 @@
       </a>
     </div>
   </div>
-  <div
-    class="d-flex justify-content-between mt-2"
-    *ngIf="movie.production_countries as countries"
-  >
-    <small class="badge badge-warning p-1 text-left info-box"
-      ><i class="fa fa-suitcase mr-1"></i>Production Countries</small
-    >
-    <ul class="d-flex list-unstyled mb-0">
-      <li *ngFor="let country of countries">
-        <!-- <span class="mr-1">{{ country.iso_3166_1 }}</span> -->
-        <span class="flag-icon flag-icon-{{ country.iso_3166_1 }} mr-1"></span>
-      </li>
-    </ul>
-  </div>
-
-  <div
-    class="d-flex justify-content-between mt-2"
-    *ngIf="movie.original_language"
-  >
-    <small class="badge badge-warning p-1 text-left info-box"
-      ><i class="fa fa-globe mr-1"></i>Original Language
-    </small>
-    <img
-      class="langImg ml-1 mr-1"
-      alt="{{ langName }}"
-      src="https://unpkg.com/language-icons/icons/{{ langFlag }}.svg"
-    />
-  </div>
-
-  <div
-    class="d-flex justify-content-between mt-2"
-    *ngIf="streams$ | async as streams"
-  >
-    <small
-      class="
-        d-flex
-        align-items-center
-        badge badge-warning
-        p-1
-        text-left
-        info-box
-      "
-      ><i class="fa fa-eye mr-1"></i> Watch On
-    </small>
-    <div class="d-flex">
-      <div *ngFor="let stream of streams" class="ml-1 mr-1">
-        <a href="{{ stream.url }}" target="_blank">
-          <img
-            class="logoImg"
-            src="{{ imgPath + stream.logo_path }}"
-            alt="No Photo"
-          />
-        </a>
+  <div class="mt-1" *ngIf="movie.production_countries as countries">
+    <small class="d-flex justify-content-between p-1">
+      <div class="text-warning">
+        <i class="fa fa-suitcase mr-2"></i>
+        <span>Production Countries</span>
       </div>
-    </div>
+      <ul class="d-flex list-unstyled mb-0">
+        <li *ngFor="let country of countries">
+          <span
+            class="flag-icon flag-icon-{{ country.iso_3166_1 }} mr-1"
+          ></span>
+        </li>
+      </ul>
+    </small>
+  </div>
+
+  <div class="mt-1" *ngIf="movie.original_language">
+    <small class="d-flex justify-content-between p-1">
+      <div class="text-warning">
+        <i class="fa fa-globe mr-2"></i>
+        <span>Original Language</span>
+      </div>
+      <img
+        class="langImg ml-1 mr-1"
+        alt="{{ langName }}"
+        src="https://unpkg.com/language-icons/icons/{{ langFlag }}.svg"
+      />
+    </small>
+  </div>
+
+  <div class="mt-1" *ngIf="streams$ | async as streams">
+    <small class="d-flex justify-content-between align-items-center p-1 w-100">
+      <div class="text-warning">
+        <i class="fa fa-eye mr-2"></i>
+        <span>Watch On</span>
+      </div>
+      <div class="d-flex">
+        <div *ngFor="let stream of streams" class="ml-1 mr-1">
+          <a href="{{ stream.url }}" target="_blank">
+            <img
+              class="logoImg"
+              src="{{ imgPath + stream.logo_path }}"
+              alt="No Photo"
+            />
+          </a>
+        </div>
+      </div>
+    </small>
   </div>
 </div>
