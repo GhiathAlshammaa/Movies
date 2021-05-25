@@ -54,7 +54,9 @@
       <ul class="d-flex list-unstyled mb-0">
         <li *ngFor="let country of countries">
           <span
-            class="flag-icon flag-icon-{{ country.iso_3166_1 }} mr-1"
+            class="flag-icon flag-icon-{{
+              country.iso_3166_1
+            }} mr-1 countryFlagImg"
           ></span>
         </li>
       </ul>
