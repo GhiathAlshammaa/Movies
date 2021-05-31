@@ -111,17 +111,62 @@ export class MoviesService implements OnInit {
             this.sliderMovies = [...this.sliderMovies, slideMovie];
           }
         });
-        // this.sliderMoviesTemp = this.sliderMoviesAll.filter(
-        //   (x) =>
-        //     !this.sliderMovies.some(
-        //       (y) => x.movieId === y.movieId
-        //     )
-        // );
         this.sliderMoviesTemp = this.sliderMovies;
         this.sliderMovies = [];
         return this.sliderMoviesTemp;
       }),
       // tap((data) => console.log(data)),
+      catchError(HandleError)
+    );
+  };
+  sliderMoviesByCategory$ = (category: string) => {
+    // console.log(`category: ${category}`);
+    const apiUrl = UrlGenerator('normal', 'movie', category, this.restUrlValue);
+    // console.log(`apiUrl: ${apiUrl}`);
+
+    return this.http.get<Movie[]>(apiUrl).pipe(
+      map((data) => ExtractData(data)),
+      // tap((data) => console.log(data)),
+
+      map((movies) => {
+        movies.map((movie) => {
+          const slideMovie: SliderMovie = {
+            movieId: movie.id,
+            image: this.imgPath + movie.poster_path,
+            thumbImage: this.imgPath + movie.poster_path,
+            alt: movie.title,
+            title: movie.title,
+          };
+
+          const checkMovieDuplicateInAll = this.sliderMoviesAll.find(
+            (m) => m.movieId === movie.id
+          );
+          const checkMovieDuplicateInSliderMovies = this.sliderMoviesAll.find(
+            (m) => m.movieId === movie.id
+          );
+
+          if (!checkMovieDuplicateInAll) {
+            this.sliderMoviesAll = [...this.sliderMovies, slideMovie];
+          }
+          if (!checkMovieDuplicateInSliderMovies) {
+            this.sliderMovies = [...this.sliderMovies, slideMovie];
+          }
+        });
+        this.sliderMoviesTemp = this.sliderMovies;
+        this.sliderMovies = [];
+        return this.sliderMoviesTemp;
+      }),
+      catchError(HandleError)
+    );
+  };
+
+  moviesByCategory$ = (category: string) => {
+    // console.log(`category: ${category}`);
+    const apiUrl = UrlGenerator('normal', 'movie', category, this.restUrlValue);
+    // console.log(`apiUrl: ${apiUrl}`);
+
+    return this.http.get<Movie[]>(apiUrl).pipe(
+      map((data) => ExtractData(data)),
       catchError(HandleError)
     );
   };

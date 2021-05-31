@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Categories, Category } from '@app/core/models/category';
 import { Genre } from '@app/core/models/genres';
 import { MoviesService } from '@app/core/services';
 import { Observable } from 'rxjs';
@@ -9,11 +10,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['genres-home.component.scss'],
 })
 export class GenresHomeComponent implements OnInit {
-  viewChildName: any;
   constructor(private moviesService: MoviesService) {}
   genres$: Observable<Genre[]>;
+  categoryMovies: Observable<Genre[]>;
+
+  categories: Category[] = Categories;
   ngOnInit(): void {
     this.genres$ = this.moviesService.genres$;
-    this.viewChildName = `nav${12}`;
   }
 }

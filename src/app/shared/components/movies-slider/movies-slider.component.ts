@@ -22,8 +22,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class MoviesSliderComponent implements OnInit {
   @Input() genreId: number;
+  @Input() category: string;
   @ViewChild('nav') slider: NgImageSliderComponent;
   sliderMovies$;
+  sliderMoviesByCategory$;
   sliderMoviesValues: SliderMovie[] = [];
 
   errorMsg: any;
@@ -50,16 +52,30 @@ export class MoviesSliderComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(`GenreId ${this.genreId}`);
-    this.sliderMovies$ = this.moviesService.sliderMovies$(this.genreId).pipe(
-      map((data) => (this.sliderMoviesValues = data)),
-      // tap(() =>
-      //   console.log(`SliderMovies: ${JSON.stringify(this.sliderMovies)}`)
-      // ),
-      catchError((err) => {
-        this.errorMsg = err;
-        return EMPTY;
-      })
-    );
-    this.sliderMovies$.subscribe();
+    if (this.genreId) {
+      this.sliderMovies$ = this.moviesService.sliderMovies$(this.genreId).pipe(
+        map((data) => (this.sliderMoviesValues = data)),
+        // tap(() =>
+        //   console.log(`SliderMovies: ${JSON.stringify(this.sliderMovies)}`)
+        // ),
+        catchError((err) => {
+          this.errorMsg = err;
+          return EMPTY;
+        })
+      );
+      this.sliderMovies$.subscribe();
+    } else {
+      this.sliderMoviesByCategory$ = this.moviesService
+        .sliderMoviesByCategory$(this.category)
+        .pipe(
+          map((data) => (this.sliderMoviesValues = data)),
+          // tap((data) => console.log(`SliderMovies: ${JSON.stringify(data)}`)),
+          catchError((err) => {
+            this.errorMsg = err;
+            return EMPTY;
+          })
+        );
+      this.sliderMoviesByCategory$.subscribe();
+    }
   }
 }

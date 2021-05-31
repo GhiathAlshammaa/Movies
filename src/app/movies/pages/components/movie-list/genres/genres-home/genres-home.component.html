@@ -1,7 +1,32 @@
 <div class="genresHomeWrapper" *ngIf="genres$ | async as genres">
-  <div *ngFor="let genre of genres">
-    <h2>{{ genre.name }}</h2>
+  <div *ngFor="let category of categories">
+    <div class="d-flex justify-content-between">
+      <h2>{{ category.title }}</h2>
+      <a
+        class="btn btn-outline-light"
+        [routerLink]="['category', category.value]"
+        >See more</a
+      >
+    </div>
     <br />
-    <app-movies-slider [genreId]="genre.id"></app-movies-slider>
+    <app-movies-slider
+      [genreId]=""
+      [category]="category.value"
+    ></app-movies-slider>
+  </div>
+
+  <!-- Stop the genres Slider temporary  -->
+
+  <div *ngFor="let genre of genres">
+    <div class="d-flex justify-content-between">
+      <h2>{{ genre.name }}</h2>
+      <a
+        class="btn btn-outline-light"
+        [routerLink]="['./', genre.id, genre.name]"
+        >See more</a
+      >
+    </div>
+    <br />
+    <app-movies-slider [genreId]="genre.id" [category]=""></app-movies-slider>
   </div>
 </div>

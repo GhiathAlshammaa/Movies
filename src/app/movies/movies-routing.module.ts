@@ -12,6 +12,7 @@ import {
   GenreMoviesListComponent,
   GenresHomeComponent,
 } from './pages/components/';
+import { CategoryMoviesListComponent } from './pages/components/movie-list/categories';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'genres/:id/:name',
         component: GenreMoviesListComponent,
+      },
+      {
+        path: 'genres/category/:name',
+        component: CategoryMoviesListComponent,
       },
     ],
   },

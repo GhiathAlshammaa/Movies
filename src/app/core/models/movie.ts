@@ -36,7 +36,7 @@ export interface Movie {
 }
 
 export interface SliderMovie {
-  genreId: number;
+  genreId?: number;
   movieId?: string;
   video?: string;
   image?: string;

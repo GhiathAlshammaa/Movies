@@ -9,3 +9,14 @@
     </div>
   </div>
 </div>
+<div *ngIf="moviesByCategoryName$ | async as movies">
+  <h2 class="mb-4">{{ categoryTitle | replaceUnderscore | titlecase }}</h2>
+  <div class="row is-flex flex-row flex-wrap">
+    <div
+      class="col-md-3 col-lg-3 col-xs-6 pb-4 mb-1"
+      *ngFor="let movie of movies"
+    >
+      <app-movie [movie]="movie"></app-movie>
+    </div>
+  </div>
+</div>
