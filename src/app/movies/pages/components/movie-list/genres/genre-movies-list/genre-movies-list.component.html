@@ -1,5 +1,7 @@
 <div *ngIf="moviesGenreById$ | async as movies">
-  <h2 class="mb-4">{{ genreTitle }}</h2>
+  <h2 class="mb-4">
+    <a [routerLink]="['../../../genres']" class="tree-link">Movie List</a> > {{ genreTitle }}
+  </h2>
   <div class="row is-flex flex-row flex-wrap">
     <div
       class="col-md-3 col-lg-3 col-xs-6 pb-4 mb-1"
