@@ -7,6 +7,7 @@ import { SafePipe } from '@app/core/utils/safe.pipe';
 import { MovieComponent, MoviesSliderComponent } from './components';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { ReplaceUnderscorePipe } from '@app/core/utils/replace-underscore.pipe';
+import { BackButtonDirective } from './directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ReplaceUnderscorePipe } from '@app/core/utils/replace-underscore.pipe';
     MoviesSliderComponent,
     SafePipe,
     ReplaceUnderscorePipe,
+    BackButtonDirective,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { ReplaceUnderscorePipe } from '@app/core/utils/replace-underscore.pipe';
     MovieComponent,
     MoviesSliderComponent,
     RouterModule,
+    BackButtonDirective
   ],
 })
 export class SharedModule {}
