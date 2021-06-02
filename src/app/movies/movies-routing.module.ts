@@ -40,6 +40,11 @@ const routes: Routes = [
     ],
   },
   {
+    path: ':id',
+    component: MovieDetailComponent,
+    data: { pageTitle: 'Movie' },
+  },
+  {
     path: ':id/:backTitle',
     component: MovieDetailComponent,
     data: { pageTitle: 'Movie' },

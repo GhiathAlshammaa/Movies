@@ -4,7 +4,18 @@
 >
   <div>
     <div class="card-header text-danger text-center font-weight-bold content">
-      <a class="truncate" [routerLink]="['/movies', movie.id, backTitle]">
+      <a
+        class="truncate"
+        [routerLink]="['/movies', movie.id, backTitle]"
+        *ngIf="backTitle"
+      >
+        {{ movie.title }}
+      </a>
+      <a
+        class="truncate"
+        [routerLink]="['/movies', movie.id]"
+        *ngIf="!backTitle"
+      >
         {{ movie.title }}
       </a>
     </div>
@@ -47,7 +58,13 @@
     </div>
 
     <div>
-      <a class="view" [routerLink]="['/movies', movie.id, backTitle]"
+      <a
+        class="view"
+        [routerLink]="['/movies', movie.id, backTitle]"
+        *ngIf="backTitle"
+        >View details &raquo;</a
+      >
+      <a class="view" [routerLink]="['/movies', movie.id]" *ngIf="!backTitle"
         >View details &raquo;</a
       >
       <div class="float-right">
