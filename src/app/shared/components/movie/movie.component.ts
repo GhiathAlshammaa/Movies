@@ -12,8 +12,8 @@ import { YearOfDate } from '@app/core/utils';
 })
 export class MovieComponent implements OnInit {
   @Input() movie: Movie;
-  @Input() backTitle: string;
-  @Input() releaseYear: boolean;
+  @Input() backTitle?: string;
+  @Input() releaseYear?: boolean;
   releaseYearValue;
 
   // Photo Properties
@@ -26,7 +26,7 @@ export class MovieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.backTitle = this.backTitle.toLocaleLowerCase();
+    this.backTitle = this.backTitle?.toLocaleLowerCase();
     this.releaseYearValue = this.releaseYear
       ? YearOfDate(this.movie?.release_date)
       : null;

@@ -40,10 +40,12 @@
         <a class="tree-link" backButton>{{ movieTitle }} > </a>
         Actor Detail
       </h3>
-      <h3 class="text-warning mt-2 mb-2">Actor Movies</h3>
+      <h3 class="text-warning mt-2 mb-2">
+        Actor Movies ( {{ movies.length | json }} )
+      </h3>
       <div class="row is-flex">
         <div class="col-sm-3 pt-3 pb-3" *ngFor="let movie of movies">
-          <app-movie [movie]="movie"></app-movie>
+          <app-movie [movie]="movie" backTitle></app-movie>
         </div>
       </div>
     </div>

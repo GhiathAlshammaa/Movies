@@ -1,7 +1,8 @@
 <div class="col-md-12">
   <div class="d-flex">
     <h3 class="text-danger mr-2">
-      <a class="tree-link" backButton>{{ backTitle }} > </a>{{ movie.title }}
+      <a class="tree-link" backButton *ngIf="backTitle">{{ backTitle }} > </a
+      >{{ movie.title }}
     </h3>
     <!-- <div>
       {{ movie.vote_average }}
