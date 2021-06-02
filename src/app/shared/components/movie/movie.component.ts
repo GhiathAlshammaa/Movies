@@ -26,6 +26,7 @@ export class MovieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.backTitle = this.backTitle.toLocaleLowerCase();
     this.releaseYearValue = this.releaseYear
       ? YearOfDate(this.movie?.release_date)
       : null;
