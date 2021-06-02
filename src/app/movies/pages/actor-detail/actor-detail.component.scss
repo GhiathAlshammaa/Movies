@@ -1,3 +1,14 @@
+.tree-link {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.tree-link:hover {
+    color: #dc3545;
+}
+
+
 .movies-box {
     min-height: 710px;
 }

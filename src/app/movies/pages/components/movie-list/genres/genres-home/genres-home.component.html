@@ -11,6 +11,7 @@
     <br />
     <app-movies-slider
       [genreId]=""
+      [genreTitle]=""
       [category]="category.value"
     ></app-movies-slider>
   </div>
@@ -27,6 +28,10 @@
       >
     </div>
     <br />
-    <app-movies-slider [genreId]="genre.id" [category]=""></app-movies-slider>
+    <app-movies-slider
+      [genreId]="genre.id"
+      [genreTitle]="genre.name"
+      [category]=""
+    ></app-movies-slider>
   </div>
 </div>

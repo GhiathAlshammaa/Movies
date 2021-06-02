@@ -11,10 +11,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class MovieStaffComponent implements OnInit {
   @Input() movieId: number;
+  @Input() movieTitle: string;
   errorMessage = '';
   staff$: Observable<Staff[]>;
 
-  // Photo Properties 
+  // Photo Properties
   imgPath = 'https://image.tmdb.org/t/p/w500/';
   noPhotoSrc = '../../../../../../assets/noPhoto.jpg';
 

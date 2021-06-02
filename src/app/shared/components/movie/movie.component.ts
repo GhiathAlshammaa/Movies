@@ -12,6 +12,7 @@ import { YearOfDate } from '@app/core/utils';
 })
 export class MovieComponent implements OnInit {
   @Input() movie: Movie;
+  @Input() backTitle: string;
   @Input() releaseYear: boolean;
   releaseYearValue;
 

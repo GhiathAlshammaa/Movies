@@ -20,6 +20,7 @@ export class ActorDetailComponent implements OnInit {
 
   actorId = 0;
   errorMsg: any;
+  movieTitle: string;
   constructor(
     private staffService: StaffService,
     private route: ActivatedRoute
@@ -27,7 +28,9 @@ export class ActorDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.actorId = +this.route.snapshot.paramMap.get('id');
+    this.movieTitle = this.route.snapshot.paramMap.get('movieTitle');
     // console.log(`actorId: ${this.actorId}`);
+    console.log(`movieTitle: ${this.movieTitle}`);
 
     this.actor$ = this.staffService.actorById$(this.actorId).pipe(
       catchError((err) => {

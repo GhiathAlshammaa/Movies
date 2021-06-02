@@ -5,7 +5,9 @@
   <div class="col-md-3" *ngFor="let person of staff">
     <div class="card text-white bg-dark mb-4 pb-1">
       <div class="card-header text-center font-weight-bold">
-        <a [routerLink]="['/movies/actor/', person.id]">{{ person.name }}</a>
+        <a [routerLink]="['/movies/actor/', person.id, movieTitle]">{{
+          person.name
+        }}</a>
       </div>
       <div class="card-body">
         <img

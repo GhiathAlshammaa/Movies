@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movie, SliderMovie } from '@app/core/models';
+import { Categories } from '@app/core/models/category';
 import { Genre } from '@app/core/models/genres';
 import { SliderMovieInit } from '@app/core/models/movie';
 import { MoviesService } from '@app/core/services';
@@ -22,6 +23,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class MoviesSliderComponent implements OnInit {
   @Input() genreId: number;
+  @Input() genreTitle: string;
   @Input() category: string;
   @ViewChild('nav') slider: NgImageSliderComponent;
   sliderMovies$;
@@ -42,7 +44,16 @@ export class MoviesSliderComponent implements OnInit {
   imageClickHandle(e) {
     const object = this.sliderMoviesValues.find((item, index) => index === e);
     const movieId = object?.movieId;
-    this.router.navigate(['./movies', movieId]);
+
+    console.log(`genreTitle: ${this.genreTitle}`);
+    console.log(`category: ${this.category}`);
+
+    const categoryTitle = this.category
+      ? Categories.find((c) => c.value === this.category).title
+      : '';
+
+    const backTitle = this.genreTitle ? this.genreTitle : categoryTitle;
+    this.router.navigate(['./movies', movieId, backTitle]);
   }
 
   lazyLoading = true;

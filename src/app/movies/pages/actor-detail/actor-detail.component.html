@@ -36,7 +36,11 @@
       class="card text-white bg-dark mt-4 mb-4 mr-3 pr-4 pl-4 pb-4 movies-box"
       *ngIf="movies.length"
     >
-      <h3 class="text-danger mt-2 mb-0">Movies</h3>
+      <h3 class="text-danger mt-2 mb-0">
+        <a class="tree-link" backButton>{{ movieTitle }} > </a>
+        Actor Detail
+      </h3>
+      <h3 class="text-warning mt-2 mb-2">Actor Movies</h3>
       <div class="row is-flex">
         <div class="col-sm-3 pt-3 pb-3" *ngFor="let movie of movies">
           <app-movie [movie]="movie"></app-movie>

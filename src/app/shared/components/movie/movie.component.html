@@ -4,7 +4,7 @@
 >
   <div>
     <div class="card-header text-danger text-center font-weight-bold content">
-      <a class="truncate" [routerLink]="['/movies', movie.id]">
+      <a class="truncate" [routerLink]="['/movies', movie.id, backTitle]">
         {{ movie.title }}
       </a>
     </div>
@@ -47,7 +47,7 @@
     </div>
 
     <div>
-      <a class="view" [routerLink]="['/movies', movie.id]"
+      <a class="view" [routerLink]="['/movies', movie.id, backTitle]"
         >View details &raquo;</a
       >
       <div class="float-right">

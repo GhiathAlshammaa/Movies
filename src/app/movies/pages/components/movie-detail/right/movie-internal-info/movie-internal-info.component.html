@@ -1,7 +1,7 @@
 <div class="col-md-12">
   <div class="d-flex">
     <h3 class="text-danger mr-2">
-      <a class="tree-link" backButton>Movie List ></a>{{ movie.title }}
+      <a class="tree-link" backButton>{{ backTitle }} > </a>{{ movie.title }}
     </h3>
     <!-- <div>
       {{ movie.vote_average }}
@@ -38,7 +38,10 @@
   </p>
 
   <!-- Staff -->
-  <app-movie-staff [movieId]="movie.id"></app-movie-staff>
+  <app-movie-staff
+    [movieId]="movie.id"
+    [movieTitle]="movie.title"
+  ></app-movie-staff>
   <!-- Similar Movies -->
   <app-movie-similar-grid [movieId]="movie.id"></app-movie-similar-grid>
 </div>

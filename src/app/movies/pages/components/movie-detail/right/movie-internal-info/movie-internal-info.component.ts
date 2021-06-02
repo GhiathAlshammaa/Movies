@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class MovieInternalInfoComponent implements OnInit {
   @Input() movie: Movie;
+  @Input() backTitle: string;
 
   constructor(private navigation: NavigationService) {}
 

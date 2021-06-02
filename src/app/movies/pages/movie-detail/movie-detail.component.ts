@@ -17,12 +17,14 @@ export class MovieDetailComponent implements OnInit {
   movie$: Observable<Movie>;
   movieSimilar$: Observable<Movie[]>;
   id = 0;
+  backTitle: string;
 
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
   ) {
     this.id = +this.route.snapshot.paramMap.get('id');
+    this.backTitle = this.route.snapshot.paramMap.get('backTitle');
   }
 
 
