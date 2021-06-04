@@ -1,59 +1,14 @@
 <div class="row m-0" *ngIf="actor$ | async as person">
+  <!-- Personal info  -->
   <div class="col-md-3">
-    <div class="card text-white bg-dark mt-4 mb-4 ml-3 p-4">
-      <div class="mb-4">
-        <img
-          width="100%"
-          src="{{ imgPath + person.profile_path }}"
-          alt="No Photo"
-          *ngIf="person.profile_path"
-        />
-        <img
-          width="100%"
-          [src]="noPhotoSrc"
-          alt="No Photo"
-          *ngIf="!person.profile_path"
-        />
-      </div>
-      <div class="caption">
-        <h4 class="text-ellipsis">
-          {{ person.name }}
-        </h4>
-        <p *ngIf="person.birthday">
-          <strong>Birthday: </strong>{{ person.birthday }}
-        </p>
-        <p *ngIf="person.deathday">
-          <strong>Deathday: </strong>{{ person.deathday }}
-        </p>
-        <p *ngIf="person.place_of_birth">
-          <strong>Place of Birth: </strong> {{ person.place_of_birth }}
-        </p>
-      </div>
-    </div>
+    <app-personal-info [person]="person"></app-personal-info>
   </div>
+
+  <!-- Actor Movies  -->
   <div class="col-md-9" *ngIf="cast$ | async as movies">
-    <div
-      class="card text-white bg-dark mt-4 mb-4 mr-3 pr-4 pl-4 pb-4 movies-box"
-      *ngIf="movies.length"
-    >
-      <h3 class="text-danger mt-2 mb-0">
-        <a class="tree-link" backButton>{{ movieTitle }} > </a>
-        Actor Detail
-      </h3>
-      <h3 class="text-warning mt-2 mb-2">
-        Actor Movies ( {{ movies.length }} )
-      </h3>
-      <div class="row is-flex">
-        <div class="col-sm-3 pt-3 pb-3" *ngFor="let movie of movies">
-          <app-movie [movie]="movie" backTitle></app-movie>
-        </div>
-      </div>
-    </div>
-    <div
-      *ngIf="!movies.length"
-      class="card text-white bg-dark mt-4 mb-4 mr-3 p-4"
-    >
-      <h3 class="text-light m-0">Oops There are no Movies available!</h3>
-    </div>
+    <app-actor-movies
+      [movies]="movies"
+      [movieTitle]="movieTitle"
+    ></app-actor-movies>
   </div>
 </div>

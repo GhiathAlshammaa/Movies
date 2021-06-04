@@ -1,0 +1,30 @@
+<div class="card text-white bg-dark mt-4 mb-4 ml-3 p-4">
+  <div class="mb-4">
+    <img
+      width="100%"
+      src="{{ imgPath + person.profile_path }}"
+      alt="No Photo"
+      *ngIf="person.profile_path"
+    />
+    <img
+      width="100%"
+      [src]="noPhotoSrc"
+      alt="No Photo"
+      *ngIf="!person.profile_path"
+    />
+  </div>
+  <div class="caption">
+    <h4 class="text-ellipsis">
+      {{ person.name }}
+    </h4>
+    <p *ngIf="person.birthday">
+      <strong>Birthday: </strong>{{ person.birthday }}
+    </p>
+    <p *ngIf="person.deathday">
+      <strong>Deathday: </strong>{{ person.deathday }}
+    </p>
+    <p *ngIf="person.place_of_birth">
+      <strong>Place of Birth: </strong> {{ person.place_of_birth }}
+    </p>
+  </div>
+</div>

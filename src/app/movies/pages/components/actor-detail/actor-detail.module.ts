@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { ActorMoviesComponent, PersonalInfoComponent } from '.';
+import { SharedModule } from '@app/shared';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [PersonalInfoComponent, ActorMoviesComponent],
+  imports: [SharedModule, CommonModule],
+  exports: [PersonalInfoComponent, ActorMoviesComponent],
 })
-export class ActorDetailModule { }
+export class ActorDetailModule {}

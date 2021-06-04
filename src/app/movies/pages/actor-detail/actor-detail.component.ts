@@ -14,9 +14,6 @@ export class ActorDetailComponent implements OnInit {
   actor$;
   cast$;
 
-  // Photo Properties
-  noPhotoSrc = '../../../../../../assets/noPhoto.jpg';
-  imgPath = 'https://image.tmdb.org/t/p/w500/';
 
   actorId = 0;
   errorMsg: any;

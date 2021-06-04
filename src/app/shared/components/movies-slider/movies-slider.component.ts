@@ -45,9 +45,6 @@ export class MoviesSliderComponent implements OnInit {
     const object = this.sliderMoviesValues.find((item, index) => index === e);
     const movieId = object?.movieId;
 
-    console.log(`genreTitle: ${this.genreTitle}`);
-    console.log(`category: ${this.category}`);
-
     const categoryTitle = this.category
       ? Categories.find((c) => c.value === this.category).title
       : '';

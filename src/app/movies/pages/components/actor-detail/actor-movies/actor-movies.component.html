@@ -1,0 +1,18 @@
+<div
+  class="card text-white bg-dark mt-4 mb-4 mr-3 pr-4 pl-4 pb-4 movies-box"
+  *ngIf="movies.length"
+>
+  <h3 class="text-danger mt-2 mb-0">
+    <a class="tree-link" backButton>{{ movieTitle }} > </a>
+    Actor Detail
+  </h3>
+  <h3 class="text-warning mt-2 mb-2">Actor Movies ( {{ movies.length }} )</h3>
+  <div class="row is-flex">
+    <div class="col-sm-3 pt-3 pb-3" *ngFor="let movie of movies">
+      <app-movie [movie]="movie" backTitle></app-movie>
+    </div>
+  </div>
+</div>
+<div *ngIf="!movies.length" class="card text-white bg-dark mt-4 mb-4 mr-3 p-4">
+  <h3 class="text-light m-0">Oops There are no Movies available!</h3>
+</div>
