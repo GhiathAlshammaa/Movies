@@ -1,8 +1,10 @@
 <div class="row m-5" *ngIf="movie$ | async as movie">
   <div class="col-md-4">
+    <!-- Left -->
     <app-movie-external-info [movie]="movie"></app-movie-external-info>
   </div>
   <div class="col-md-8">
+    <!-- Right -->
     <app-movie-internal-info
       [movie]="movie"
       [backTitle]="backTitle"
