@@ -5,7 +5,7 @@ import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
   declarations: [],
-  imports: [SharedModule, GenresModule, CategoriesModule],
-  exports: [GenresModule, CategoriesModule],
+  imports: [SharedModule, GenresModule],
+  exports: [GenresModule],
 })
 export class MovieListModule {}
