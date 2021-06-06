@@ -19,14 +19,16 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   searchMovies() {
-    this.searchMoviesResults$ = this.moviesService
-      .searchMovies$(this.searchStr)
-      .pipe(
-        catchError((err) => {
-          this.errorMsg = err;
-          return EMPTY;
-        })
-      );
-    this.searchMoviesResults$.subscribe();
+    if (this.searchStr) {
+      this.searchMoviesResults$ = this.moviesService
+        .searchMovies$(this.searchStr)
+        .pipe(
+          catchError((err) => {
+            this.errorMsg = err;
+            return EMPTY;
+          })
+        );
+      this.searchMoviesResults$.subscribe();
+    }
   }
 }
