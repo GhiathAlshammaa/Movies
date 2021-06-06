@@ -7,7 +7,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist",
+    "public": "dist/movies",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   },
   "storage": {
