@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent, PageNotFoundComponent } from './pages';
 import { SelectiveStrategy } from './selective-strategy.service';
+import { SharedModule } from './shared';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [HomeComponent, PageNotFoundComponent],
   imports: [
+    SharedModule,
     RouterModule.forRoot(routes, {
       enableTracing: false,
       preloadingStrategy: SelectiveStrategy,

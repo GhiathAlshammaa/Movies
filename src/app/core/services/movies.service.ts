@@ -171,5 +171,16 @@ export class MoviesService implements OnInit {
     );
   };
 
+  searchMovies$ = (searchStr: string) => {
+    this.restUrlValue += `&query=${searchStr}`;
+    const apiUrl = UrlGenerator('normal', 'search', 'movie', this.restUrlValue);
+    // console.log(`apiUrl of searchMovies: ${apiUrl}`);
+
+    return this.http.get<Movie[]>(apiUrl).pipe(
+      map((data) => ExtractData(data)),
+      catchError(HandleError)
+    );
+  };
+
   ngOnInit() {}
 }
