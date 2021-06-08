@@ -63,9 +63,6 @@ export class MoviesSliderComponent implements OnInit {
     if (this.genreId) {
       this.sliderMovies$ = this.moviesService.sliderMovies$(this.genreId).pipe(
         map((data) => (this.sliderMoviesValues = data)),
-        // tap(() =>
-        //   console.log(`SliderMovies: ${JSON.stringify(this.sliderMovies)}`)
-        // ),
         catchError((err) => {
           this.errorMsg = err;
           return EMPTY;
@@ -77,7 +74,6 @@ export class MoviesSliderComponent implements OnInit {
         .sliderMoviesByCategory$(this.category)
         .pipe(
           map((data) => (this.sliderMoviesValues = data)),
-          // tap((data) => console.log(`SliderMovies: ${JSON.stringify(data)}`)),
           catchError((err) => {
             this.errorMsg = err;
             return EMPTY;

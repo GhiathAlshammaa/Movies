@@ -91,8 +91,12 @@ export class MoviesService implements OnInit {
           const slideMovie: SliderMovie = {
             genreId: id,
             movieId: movie.id,
-            image: this.imgPath + movie.poster_path,
-            thumbImage: this.imgPath + movie.poster_path,
+            image: movie.poster_path
+              ? this.imgPath + movie.poster_path
+              : this.noPhotoSrc,
+            thumbImage: movie.poster_path
+              ? this.imgPath + movie.poster_path
+              : this.noPhotoSrc,
             alt: movie.title,
             title: movie.title,
           };
@@ -132,8 +136,12 @@ export class MoviesService implements OnInit {
         movies.map((movie) => {
           const slideMovie: SliderMovie = {
             movieId: movie.id,
-            image: this.imgPath + movie.poster_path,
-            thumbImage: this.imgPath + movie.poster_path,
+            image: movie.poster_path
+              ? this.imgPath + movie.poster_path
+              : this.noPhotoSrc,
+            thumbImage: movie.poster_path
+              ? this.imgPath + movie.poster_path
+              : this.noPhotoSrc,
             alt: movie.title,
             title: movie.title,
           };

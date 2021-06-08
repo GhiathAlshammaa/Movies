@@ -44,7 +44,6 @@ export interface SliderMovie {
   alt?: string;
   title?: string;
   posterImage?: string;
-  // order?: number;
 }
 
 export const SliderMovieInit = {
