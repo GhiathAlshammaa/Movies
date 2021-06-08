@@ -7,6 +7,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "rewrites": [{ "source": "**", "destination": "/index.html" }],
     "public": "dist/movies",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   },

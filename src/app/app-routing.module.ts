@@ -25,7 +25,6 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forRoot(routes, {
-      useHash: true,
       enableTracing: false,
       preloadingStrategy: SelectiveStrategy,
     }),
