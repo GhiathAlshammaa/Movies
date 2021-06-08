@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 import { MoviesRoutingModule } from './movies-routing.module';
-import { MoviesPagesModule } from './pages/movies-pages.module';
+import { movieReducer } from './state/movie.reducer';
 
 @NgModule({
-  imports: [ MoviesRoutingModule],
+  imports: [MoviesRoutingModule, StoreModule.forFeature('movies', movieReducer)],
   exports: [MoviesRoutingModule],
 })
 export class MoviesModule {}

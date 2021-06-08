@@ -86,5 +86,14 @@
         </small>
       </div>
     </div>
+    <div
+      class="text-dark d-flex justify-content-between"
+      *ngIf="displayMovieId"
+    >
+      <div>movieId:</div>
+      <ng-container>
+        {{ movie.id }}
+      </ng-container>
+    </div>
   </div>
 </div>

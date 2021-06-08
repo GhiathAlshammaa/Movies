@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
+import { StoreModule } from '@ngrx/store';
+import { MoviesModule } from './movies';
+import { movieReducer } from './movies/state/movie.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +17,9 @@ import { SharedModule } from './shared';
     HttpClientModule,
     SharedModule,
     CoreModule,
+    StoreModule.forRoot({}, {}),
     AppRoutingModule,
+    MoviesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

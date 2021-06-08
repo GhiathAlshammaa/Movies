@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '@app/core/services';
 import { EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,25 @@ export class HomeComponent implements OnInit {
   searchStr: string;
   searchMoviesResults$;
   errorMsg: any;
+  displayMovieId = false;
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(
+    private store: Store<any>,
+    private moviesService: MoviesService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //TODO: Unsubscribe
+    this.store.select('movies').subscribe((movies) => {
+      if (movies) {
+        this.displayMovieId = movies.showMovieId;
+      }
+    });
+  }
+
+  checkChanged() {
+    this.store.dispatch({ type: '[Movie] Toggle Movie Id' });
+  }
 
   searchMovies() {
     if (this.searchStr) {

@@ -26,6 +26,18 @@
         <!-- /input-group -->
       </div>
     </form>
+    <br />
+    <div class="pr-5 pl-4 pt-0">
+      <label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          (change)="checkChanged()"
+          [checked]="displayMovieId"
+        />
+        Display Movie Id
+      </label>
+    </div>
   </div>
 </div>
 
@@ -37,7 +49,10 @@
         class="col-sm-6 col-md-4 col-lg-3 col-xs-6 mb-3 mt-3"
         *ngFor="let movie of searchRes; let i = index"
       >
-        <app-movie [movie]="movie"></app-movie>
+        <app-movie
+          [movie]="movie"
+          [displayMovieId]="displayMovieId"
+        ></app-movie>
       </div>
     </div>
     <div class="" *ngIf="searchRes.length === 0">

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { movieReducer } from './movies/state/movie.reducer';
 import { HomeComponent, PageNotFoundComponent } from './pages';
 import { SelectiveStrategy } from './selective-strategy.service';
 import { SharedModule } from './shared';
