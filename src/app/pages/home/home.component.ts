@@ -3,6 +3,7 @@ import { MoviesService } from '@app/core/services';
 import { EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { getShowMovieIdState, State } from '@app/movies/state/movie.reducer';
 
 @Component({
   selector: 'app-home',
@@ -14,20 +15,20 @@ export class HomeComponent implements OnInit {
   searchStr: string;
   searchMoviesResults$;
   errorMsg: any;
-  displayMovieId = false;
+  displayMovieIdState = false;
 
   constructor(
-    private store: Store<any>,
+    private store: Store<State>,
     private moviesService: MoviesService
   ) {}
 
   ngOnInit(): void {
     //TODO: Unsubscribe
-    this.store.select('movies').subscribe((movies) => {
-      if (movies) {
-        this.displayMovieId = movies.showMovieId;
-      }
-    });
+    this.store
+      .select(getShowMovieIdState)
+      .subscribe(
+        (showMovieIdState) => (this.displayMovieIdState = showMovieIdState)
+      );
   }
 
   checkChanged() {

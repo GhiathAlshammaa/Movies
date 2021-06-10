@@ -33,7 +33,7 @@
           type="checkbox"
           class="form-check-input"
           (change)="checkChanged()"
-          [checked]="displayMovieId"
+          [checked]="displayMovieIdState"
         />
         Display Movie Id
       </label>
@@ -51,7 +51,7 @@
       >
         <app-movie
           [movie]="movie"
-          [displayMovieId]="displayMovieId"
+          [displayMovieId]="displayMovieIdState"
         ></app-movie>
       </div>
     </div>
