@@ -9,6 +9,8 @@ import { SharedModule } from './shared';
 import { StoreModule } from '@ngrx/store';
 import { MoviesModule } from './movies';
 import { movieReducer } from './movies/state/movie.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,11 @@ import { movieReducer } from './movies/state/movie.reducer';
     StoreModule.forRoot({}, {}),
     AppRoutingModule,
     MoviesModule,
+    StoreDevtoolsModule.instrument({
+      name: 'movies',
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
