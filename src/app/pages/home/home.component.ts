@@ -4,6 +4,7 @@ import { EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { getShowMovieIdState, State } from '@app/movies/state/movie.reducer';
+import * as MovieActions from '@app/movies/state/movie.actions';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkChanged() {
-    this.store.dispatch({ type: '[Movie] Toggle Movie Id' });
+    this.store.dispatch(MovieActions.toggleMovieIdState());
   }
 
   searchMovies() {
