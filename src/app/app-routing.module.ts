@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
-import { movieReducer } from './movies/state/movie.reducer';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent, PageNotFoundComponent } from './pages';
 import { SelectiveStrategy } from './selective-strategy.service';
 import { SharedModule } from './shared';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  {
+    path: 'auth',
+    data: { preload: false }, // change to true, when user use this route
+    loadChildren: () => import('@app/users').then((m) => m.UsersModule),
+  },
   {
     path: 'movies',
     data: { preload: false }, // change to true, when user use this route

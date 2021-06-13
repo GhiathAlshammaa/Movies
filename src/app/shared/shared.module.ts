@@ -28,6 +28,7 @@ import { BackButtonDirective } from './directive';
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HeaderComponent,
     FooterComponent,
     SafePipe,

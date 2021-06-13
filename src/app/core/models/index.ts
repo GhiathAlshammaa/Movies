@@ -6,3 +6,4 @@ export { Video } from './video';
 export { Genres } from './genres';
 export { Actor } from './actor';
 export { Stream, StreamCountry, StreamStatus } from './stream';
+export { User } from './user';

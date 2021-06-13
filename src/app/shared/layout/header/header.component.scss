@@ -7,5 +7,7 @@
             color: #000 !important;
         }
 }
-
-
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+}
