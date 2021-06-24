@@ -1,41 +1,21 @@
-<div class="authContainer" *ngIf="authService.userData as user">
-  <div *ngIf="user" class="text-dark">
-    <h4 *ngIf="user.displayName">Hello {{ user.displayName }}</h4>
-    <br />
-    <h4>
-      You are already logged in, you could go to<br />
-      <div class="d-flex justify-content-center align-items-center">
-        <a routerLink="../dashboard"><b>Dashboard</b></a
-        >&nbsp; or &nbsp;
-        <button
-          class="btn btn-link pb-1"
-          (click)="authService.SignOut()"
-          style="font-size: 24px; padding: 0"
-        >
-          <b>Sign Out</b>
-        </button>
-      </div>
-    </h4>
-  </div>
-</div>
-
-<div class="authContainer" *ngIf="!authService.userData as user">
+<div class="authContainer">
   <div class="displayTable">
     <div class="displayTableCell">
       <div class="authBlock">
-        <h3 class="text-primary">Sign In</h3>
+        <h3 class="text-primary">Sign Up</h3>
+
         <form
-          id="login-form"
+          id="sign-up-form"
           class="form"
           [formGroup]="form"
           (ngSubmit)="submitHandler()"
         >
           <div class="formGroup">
             <input
-              type="text"
+              type="email"
               class="formControl"
-              placeholder="Username"
-              formControlName="username"
+              placeholder="Email Address"
+              formControlName="email"
               required
             />
           </div>
@@ -50,7 +30,6 @@
             />
           </div>
 
-          <!-- Calling SignIn Api from AuthService -->
           <div class="formGroup">
             <input
               type="submit"
@@ -64,7 +43,7 @@
             <span class="or"><span class="orInner">Or</span></span>
           </div>
 
-          <!-- Calling GoogleAuth Api from AuthService -->
+          <!-- Continue with Google -->
           <div class="formGroup">
             <button
               type="button"
@@ -72,7 +51,7 @@
               (click)="authService.GoogleAuth()"
             >
               <i class="fab fa-google-plus-g"></i>
-              Log in with Google
+              Continue with Google
             </button>
           </div>
 
@@ -90,17 +69,14 @@
         </form>
 
         <div class="forgotPassword">
-          <span routerLink="/forgot-password">Forgot Password?</span>
+          <span></span>
         </div>
       </div>
 
       <div class="redirectToLogin">
         <span
-          >Don't have an account? &nbsp;<span
-            class="redirect"
-            routerLink="../signUp"
-            >Sign Up</span
-          ></span
+          >Already have an account?&nbsp;
+          <span class="redirect" routerLink="../login">Log In</span></span
         >
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared';
-import { DashboardComponent, SignInComponent } from './pages';
+import { DashboardComponent, SignInComponent, SignUpComponent, VerifyEmailComponent } from './pages';
 
 const routes: Routes = [
   {
@@ -10,21 +10,25 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'signIn',
+        redirectTo: 'login',
         pathMatch: 'full',
       },
       {
-        path: 'signIn',
+        path: 'login',
         component: SignInComponent,
       },
       {
         path: 'dashboard',
         component: DashboardComponent,
       },
-      // {
-      //   path: 'signUp',
-      //   component: SignUpComponent,
-      // },
+      {
+        path: 'signUp',
+        component: SignUpComponent,
+      },
+      {
+        path: 'verify-email',
+        component: VerifyEmailComponent,
+      },
     ],
   },
 ];

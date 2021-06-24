@@ -36,7 +36,6 @@
         >
       </div>
       <div class="navbar-nav ml-auto">
-
         <a
           *ngIf="!authService.userData as user"
           class="nav-link"
@@ -46,15 +45,28 @@
           >Sign In
         </a>
 
-        <div *ngIf="authService.userData as user" class="d-flex flex-row align-items-center">
-          <span *ngIf="user.displayName" class="text-dark">Hello {{user.displayName ? user.displayName : Unkonwn}}</span>
-          <a
-          class="nav-link"
-          aria-current="page"
-          routerLink="/auth"
-          routerLinkActive="active"
-          >Sign Out
-        </a>
+        <div
+          *ngIf="authService.userData as user"
+          class="d-flex flex-row align-items-center"
+        >
+          <div *ngIf="user" class="text-dark mt-1">
+            Hello
+            <a
+              routerLink="/auth/dashboard"
+              class="text-success"
+              style="text-decoration: none"
+            >
+              {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
+            >
+          </div>
+          &nbsp; <span class="text-dark">|</span>
+          <button
+            class="btn btn-link nav-link pb-1"
+            (click)="authService.SignOut()"
+            style="font-size: 16px"
+          >
+            <b>Sign Out</b>
+          </button>
         </div>
       </div>
     </div>

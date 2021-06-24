@@ -56,8 +56,8 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
-      up and returns promise */
+        /* Call the SendVerificaitonMail() function when new user sign up and returns promise */
+        console.log('Sign Up Success!');
         this.SendVerificationMail();
         this.SetUserData(result.user);
       })
@@ -69,7 +69,7 @@ export class AuthService {
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
     return (await this.afAuth.currentUser).sendEmailVerification().then(() => {
-      this.router.navigate(['verify-email-address']);
+      this.router.navigate(['./auth/verify-email']);
     });
   }
 
@@ -94,6 +94,11 @@ export class AuthService {
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
+  }
+
+  // Sign in with FB
+  FacebookAuth() {
+    return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
   }
 
   // Auth logic to run auth providers
