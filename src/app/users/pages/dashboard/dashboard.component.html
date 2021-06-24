@@ -1,84 +1,102 @@
-<nav class="navbar navbar-light bg-light fixed-top flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><b>Dashboard</b></a>
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign out</a>
-    </li>
-  </ul>
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a
+    class="
+      navbar-brand
+      col-sm-3 col-md-2
+      mr-0
+      d-flex
+      justify-content-center
+      align-items-center
+      flex-column
+    "
+    routerLink="/home"
+  >
+    <img
+      class="brand-logo"
+      src="assets/logo.png"
+      alt="Movies Logo"
+      width="65"
+      height="75"
+    />
+    <span class="dasboard-text">Dashboard</span>
+  </a>
 </nav>
 
+<!-- Sidebar navigation -->
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <nav class="col-md-2 d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              Dashboard Home <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="UserAccount Settings"></span>
-              UserAccount Settings
+            <a
+              class="nav-link"
+              href="#"
+              routerLink="./"
+              routerLinkActive="active"
+            >
+              <i class="fas fa-user mr-2"></i>
+              <span>User Profile</span>
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span data-feather="My Favorite Movies"></span>
-              My Favorite Movies
+              <i class="fa fa-film mr-2"></i>
+              <span>My List</span>
             </a>
           </li>
 
           <li class="nav-item">
             <button class="nav-link btn btn-link" (click)="signOut()">
               <span data-feather="shopping-cart"></span>
-              Sign Out
+              <i class="fas fa-sign-out-alt mr-2"></i>
+              <span>Sign Out</span>
             </button>
           </li>
         </ul>
       </div>
     </nav>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div
-        class="
-          d-flex
-          justify-content-between
-          flex-wrap flex-md-nowrap
-          align-items-center
-          pt-3
-          pb-2
-          mb-3
-          border-bottom
-        "
-      >
-        <h1 class="h2">Dashboard Home</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <!-- <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">
-              Share
-            </button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">
-              Export
-            </button>
-          </div> -->
-          <!-- <button
-            type="button"
-            class="btn btn-sm btn-outline-secondary dropdown-toggle"
-          >
-            <span data-feather="calendar"></span>
-            This week
-          </button> -->
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-4">
+      <div class="inner-adjust">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">User Profile</h1>
+        </div>
+        <!-- Show user data when logged in -->
+        <div class="row" *ngIf="authService.userData as user">
+          <div class="col-md-12">
+            <div class="media">
+              <img
+                class="align-self-start mr-5 img-thumbnail rounded-circle"
+                src="{{
+                  user.photoURL ? user.photoURL : '/assets/dummy-user.png'
+                }}"
+                alt="{{ user.displayName }}"
+              />
+              <div class="media-body">
+                <h1>
+                  Hello:
+                  <strong>{{
+                    user.displayName ? user.displayName : 'Super Admin'
+                  }}</strong>
+                </h1>
+                <p>
+                  User ID: <strong>{{ user.uid }}</strong>
+                </p>
+                <p>
+                  Email: <strong>{{ user.email }}</strong>
+                </p>
+                <p>
+                  Email Verified: <strong>{{ user.emailVerified }}</strong>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
-
-      <h2>Section title</h2>
-      <div class="table-responsive">123</div>
     </main>
   </div>
 </div>

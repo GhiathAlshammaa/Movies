@@ -7,12 +7,14 @@ import {
 import { Router } from '@angular/router';
 import { User } from '@app/core/models';
 import firebase from 'firebase/app';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  userData: any;
+  userData: firebase.User;
+  //userData: Observable<firebase.User>;
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -24,6 +26,7 @@ export class AuthService {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
+        //this.afAuth.authState;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
