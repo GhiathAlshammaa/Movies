@@ -37,7 +37,38 @@
       </div>
       <div class="navbar-nav ml-auto">
         <a
-          *ngIf="!authService.userData as user"
+          *ngIf="authService.isLoggedIn === false"
+          routerLink="/auth/login"
+          style="text-decoration: none; font-size: 16px; font-weight: bold"
+        >
+          Log In
+        </a>
+
+        <div *ngIf="authService.userData as user" class="text-dark mr-2">
+          <div *ngIf="authService.isLoggedIn === true">
+            Hello
+            <a
+              routerLink="/auth/dashboard"
+              class="text-success"
+              style="text-decoration: none; font-weight: bold"
+            >
+              {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
+            >
+          </div>
+        </div>
+
+        <a
+          *ngIf="authService.isLoggedIn === true"
+          routerLink="/auth/signOut"
+          style="text-decoration: none; font-size: 16px; font-weight: bold"
+        >
+          <span class="text-dark">|</span>
+          Log Out
+        </a>
+        <!-- <span class="ml-2">{{ authService.isLoggedIn | json }}</span> -->
+      </div>
+      <!-- <div class="navbar-nav ml-auto" *ngIf="!authService.userData as user">
+        <a
           class="nav-link"
           aria-current="page"
           routerLink="/auth"
@@ -49,7 +80,7 @@
           *ngIf="authService.userData as user"
           class="d-flex flex-row align-items-center"
         >
-          <div *ngIf="user" class="text-dark mt-1">
+          <div *ngIf="user && user.emailVerified" class="text-dark mt-1">
             Hello
             <a
               routerLink="/auth/dashboard"
@@ -58,9 +89,11 @@
             >
               {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
             >
+            &nbsp; <span class="text-dark">|</span>
           </div>
-          &nbsp; <span class="text-dark">|</span>
+
           <button
+            *ngIf="user"
             class="btn btn-link nav-link pb-1"
             (click)="authService.SignOut()"
             style="font-size: 16px"
@@ -68,7 +101,7 @@
             <b>Sign Out</b>
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </nav>

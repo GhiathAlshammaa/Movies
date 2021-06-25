@@ -1,23 +1,63 @@
-<div class="authContainer" *ngIf="authService.userData as user">
-  <div *ngIf="user" class="text-dark">
-    <h4 *ngIf="user.displayName">Hello {{ user.displayName }}</h4>
-    <br />
-    <h4>
-      You are already logged in, you could go to<br />
-      <div class="d-flex justify-content-center align-items-center">
-        <a routerLink="../dashboard"><b>Dashboard</b></a
-        >&nbsp; or &nbsp;
-        <button
-          class="btn btn-link pb-1"
-          (click)="authService.SignOut()"
-          style="font-size: 24px; padding: 0"
-        >
-          <b>Sign Out</b>
-        </button>
+<div *ngIf="authService.isLoggedIn === true">
+  <div class="authContainer" *ngIf="authService.userData as user">
+    <div class="displayTable">
+      <div class="displayTableCell">
+        <div class="authBlock p-4">
+          <h2 class="danger-text text-center m-0">
+            Hello
+            <span class="text-success">{{ user.displayName }}</span>
+          </h2>
+          <div class="redirectToLogin pt-2 text-justify">
+            <p class="mb-2">
+              You are already logged in, but you have not verified your email.
+              So you can just choose from the below links:
+            </p>
+            <div
+              class="
+                d-flex
+                justify-content-center
+                align-items-center
+                text-decoration-none
+                font-weight-bold
+              "
+              style="padding: 0"
+            >
+              <a routerLink="../verify-email">Verification</a>
+              <span> &nbsp; or &nbsp; </span>
+              <a routerLink="../signOut">Sign Out</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </h4>
+    </div>
   </div>
 </div>
+
+<!-- <div class="authContainer" *ngIf="authService.userData as user">
+  <div *ngIf="user" class="text-dark">
+    <h4 *ngIf="user.displayName" class="d-flex justify-content-center">
+      Hello {{ user.displayName }}
+    </h4>
+    <div style="font-size: 18px">
+      You are already logged in, but you didn't verify your Email. So you could
+      only go to<br />
+      <div
+        class="d-flex justify-content-center align-items-center"
+        style="padding: 0"
+      >
+        <a routerLink="../dashboard"><b>Dashboard</b></a>
+        <span> &nbsp; or &nbsp; </span>
+        <a
+          class="btn btn-link p-0"
+          style="font-size: 18px"
+          (click)="authService.SignOut()"
+        >
+          Sign Out
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->
 
 <div class="authContainer" *ngIf="!authService.userData as user">
   <div class="displayTable">

@@ -5,27 +5,30 @@ import { AuthService } from '@app/shared/services/auth.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: 'sign-up.component.html',
-  styleUrls: ['sign-up.component.scss']
+  styleUrls: ['sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
   form = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
     ]),
   });
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   submitHandler() {
     if (this.form.valid) {
+      const username = this.form.get('username').value;
       const email = this.form.get('email').value;
       const password = this.form.get('password').value;
-      this.authService.SignUp(email, password);
+      this.authService.SignUp(email, password, username);
     }
   }
-
 }

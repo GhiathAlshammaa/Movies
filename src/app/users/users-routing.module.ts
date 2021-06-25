@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared';
-import { DashboardComponent, SignInComponent, SignUpComponent, VerifyEmailComponent } from './pages';
+import {
+  DashboardComponent,
+  SignInComponent,
+  SignOutComponent,
+  SignUpComponent,
+  VerifyEmailComponent,
+} from './pages';
 
 const routes: Routes = [
   {
@@ -26,6 +32,10 @@ const routes: Routes = [
         component: SignUpComponent,
       },
       {
+        path: 'signOut',
+        component: SignOutComponent,
+      },
+      {
         path: 'verify-email',
         component: VerifyEmailComponent,
       },
@@ -34,8 +44,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DashboardComponent,
+    SignInComponent,
+    SignUpComponent,
+    SignOutComponent,
+    VerifyEmailComponent,
+  ],
   imports: [SharedModule, RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [
+    RouterModule,
+    DashboardComponent,
+    SignInComponent,
+    SignUpComponent,
+    SignOutComponent,
+    VerifyEmailComponent,
+  ],
 })
 export class UsersRoutingModule {}

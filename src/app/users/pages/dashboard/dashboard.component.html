@@ -1,102 +1,129 @@
 <!-- Top navigation -->
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a
-    class="
-      navbar-brand
-      col-sm-3 col-md-2
-      mr-0
-      d-flex
-      justify-content-center
-      align-items-center
-      flex-column
-    "
-    routerLink="/home"
-  >
-    <img
-      class="brand-logo"
-      src="assets/logo.png"
-      alt="Movies Logo"
-      width="65"
-      height="75"
-    />
-    <span class="dasboard-text"></span>
-  </a>
-</nav>
+<div *ngIf="authService.userData?.emailVerified">
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a
+      class="
+        navbar-brand
+        col-sm-3 col-md-2
+        mr-0
+        d-flex
+        justify-content-center
+        align-items-center
+        flex-column
+      "
+      routerLink="/home"
+    >
+      <img
+        class="brand-logo"
+        src="assets/logo.png"
+        alt="Movies Logo"
+        width="65"
+        height="75"
+      />
+      <span class="dasboard-text"></span>
+    </a>
+  </nav>
 
-<!-- Sidebar navigation -->
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#"
-              routerLink="./"
-              routerLinkActive="active"
-            >
-              <i class="fas fa-user mr-2"></i>
-              <span>User Profile</span>
-            </a>
-          </li>
+  <!-- Sidebar navigation -->
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                routerLink="./"
+                routerLinkActive="active"
+              >
+                <i class="fas fa-user mr-2"></i>
+                <span>User Profile</span>
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fa fa-film mr-2"></i>
-              <span>My List</span>
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fa fa-film mr-2"></i>
+                <span>My List</span>
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <button class="nav-link btn btn-link" (click)="signOut()">
-              <span data-feather="shopping-cart"></span>
-              <i class="fas fa-sign-out-alt mr-2"></i>
-              <span>Sign Out</span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- Main content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-4">
-      <div class="inner-adjust">
-        <div class="pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">User Profile</h1>
+            <li class="nav-item">
+              <button class="nav-link btn btn-link" (click)="signOut()">
+                <span data-feather="shopping-cart"></span>
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                <span>Sign Out</span>
+              </button>
+            </li>
+          </ul>
         </div>
-        <!-- Show user data when logged in -->
-        <div class="row" *ngIf="authService.userData as user">
-          <div class="col-md-12">
-            <div class="media">
-              <img
-                class="align-self-start mr-5 mt-4 img-thumbnail rounded-circle"
-                src="{{
-                  user.photoURL ? user.photoURL : '/assets/dummy-user.png'
-                }}"
-                alt="{{ user.displayName }}"
-              />
-              <div class="media-body mt-5">
-                <h1>
-                  Hello:
-                  <strong>{{
-                    user.displayName ? user.displayName : 'Unknown'
-                  }}</strong>
-                </h1>
-                <p>
-                  User ID: <strong>{{ user.uid }}</strong>
-                </p>
-                <p>
-                  Email: <strong>{{ user.email }}</strong>
-                </p>
-                <p>
-                  Email Verified: <strong>{{ user.emailVerified }}</strong>
-                </p>
+      </nav>
+
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-4">
+        <div class="inner-adjust">
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">User Profile</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" *ngIf="authService.userData as user">
+            <div class="col-md-12">
+              <div class="media">
+                <img
+                  class="
+                    align-self-start
+                    mr-5
+                    mt-4
+                    img-thumbnail
+                    rounded-circle
+                  "
+                  src="{{
+                    user.photoURL ? user.photoURL : '/assets/dummy-user.png'
+                  }}"
+                  alt="{{ user.displayName }}"
+                />
+                <div class="media-body mt-5">
+                  <h1>
+                    Hello:
+                    <strong>{{
+                      user.displayName ? user.displayName : 'Unknown'
+                    }}</strong>
+                  </h1>
+                  <p>
+                    User ID: <strong>{{ user.uid }}</strong>
+                  </p>
+                  <p>
+                    Email: <strong>{{ user.email }}</strong>
+                  </p>
+                  <p>
+                    Email Verified: <strong>{{ user.emailVerified }}</strong>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </main>
+    </div>
+  </div>
+</div>
+<div *ngIf="!authService.userData?.emailVerified">
+  <div class="authContainer">
+    <div class="displayTable">
+      <div class="displayTableCell">
+        <div class="authBlock">
+          <h2 class="danger-text">Access Denied to Dashboard</h2>
+          <div class="redirectToLogin">
+            <span
+              >you need to verify your email from
+              <span class="redirect" routerLink="../verify-email">
+                here</span
+              ></span
+            >
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   </div>
 </div>

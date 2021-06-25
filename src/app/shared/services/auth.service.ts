@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   userData: firebase.User;
+  userState: any;
   //userData: Observable<firebase.User>;
   constructor(
     public afs: AngularFirestore,
@@ -26,7 +27,6 @@ export class AuthService {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
-        //this.afAuth.authState;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
@@ -41,10 +41,14 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['auth/dashboard']);
-        });
         this.SetUserData(result.user);
+        if (result.user && result.user.emailVerified) {
+          this.ngZone.run(() => {
+            this.router.navigate(['auth/dashboard']);
+          });
+        } else {
+          this.router.navigate(['auth/verify-email']);
+        }
       })
       .catch((error) => {
         window.alert(error.message);
@@ -52,10 +56,11 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email, password) {
+  SignUp(email, password, username) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
+        result.user.updateProfile({ displayName: username });
         /* Call the SendVerificaitonMail() function when new user sign up and returns promise */
         console.log('Sign Up Success!');
         this.SendVerificationMail();
@@ -88,7 +93,8 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null && user.emailVerified !== false ? true : false;
+    // return user !== null && user.emailVerified !== false ? true : false;
+    return user !== null ? true : false;
   }
 
   // Sign in with Google
@@ -138,9 +144,10 @@ export class AuthService {
 
   // Sign out
   SignOut() {
+    console.log('Sign Out!');
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['home']);
+      this.router.navigate(['./auth/signOut']);
     });
   }
 }

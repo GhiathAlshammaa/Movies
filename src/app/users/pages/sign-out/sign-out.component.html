@@ -1,0 +1,19 @@
+<div *ngIf="authService.isLoggedIn === false">
+  <div class="authContainer">
+    <div class="displayTable">
+      <div class="displayTableCell">
+        <div class="authBlock">
+          <h2 class="danger-text">
+            Good Bye
+            <span class="text-success">{{
+              authService.userData.displayName
+            }}</span>
+          </h2>
+          <div class="redirectToLogin">
+            <span>You're logged out </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
