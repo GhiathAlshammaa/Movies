@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/services/auth.service';
 
 @Component({
@@ -9,22 +10,26 @@ import { AuthService } from '@app/shared/services/auth.service';
 })
 export class SignInComponent implements OnInit {
   form = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(6),
     ]),
   });
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+  }
 
   ngOnInit(): void {}
 
   submitHandler() {
     if (this.form.valid) {
-      const username = this.form.get('username').value;
+      const email = this.form.get('email').value;
       const password = this.form.get('password').value;
-      this.authService.SignIn(username, password);
+      this.authService.SignIn(email, password);
     }
   }
 }

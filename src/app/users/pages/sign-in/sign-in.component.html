@@ -1,4 +1,4 @@
-<div *ngIf="authService.isLoggedIn === true">
+<div *ngIf="authService.isLoggedIn === true && !authService.isUserVerified ">
   <div class="authContainer" *ngIf="authService.userData as user">
     <div class="displayTable">
       <div class="displayTableCell">
@@ -33,115 +33,91 @@
   </div>
 </div>
 
-<!-- <div class="authContainer" *ngIf="authService.userData as user">
-  <div *ngIf="user" class="text-dark">
-    <h4 *ngIf="user.displayName" class="d-flex justify-content-center">
-      Hello {{ user.displayName }}
-    </h4>
-    <div style="font-size: 18px">
-      You are already logged in, but you didn't verify your Email. So you could
-      only go to<br />
-      <div
-        class="d-flex justify-content-center align-items-center"
-        style="padding: 0"
-      >
-        <a routerLink="../dashboard"><b>Dashboard</b></a>
-        <span> &nbsp; or &nbsp; </span>
-        <a
-          class="btn btn-link p-0"
-          style="font-size: 18px"
-          (click)="authService.SignOut()"
-        >
-          Sign Out
-        </a>
-      </div>
-    </div>
-  </div>
-</div> -->
+<div *ngIf="authService.isLoggedIn === false">
+  <div class="authContainer">
+    <div class="displayTable">
+      <div class="displayTableCell">
+        <div class="authBlock">
+          <h3 class="text-primary">Sign In</h3>
+          <form
+            id="login-form"
+            class="form"
+            [formGroup]="form"
+            (ngSubmit)="submitHandler()"
+          >
+            <div class="formGroup">
+              <input
+                type="text"
+                class="formControl"
+                placeholder="Email"
+                formControlName="email"
+                required
+              />
+            </div>
 
-<div class="authContainer" *ngIf="!authService.userData as user">
-  <div class="displayTable">
-    <div class="displayTableCell">
-      <div class="authBlock">
-        <h3 class="text-primary">Sign In</h3>
-        <form
-          id="login-form"
-          class="form"
-          [formGroup]="form"
-          (ngSubmit)="submitHandler()"
-        >
-          <div class="formGroup">
-            <input
-              type="text"
-              class="formControl"
-              placeholder="Username"
-              formControlName="username"
-              required
-            />
+            <div class="formGroup">
+              <input
+                type="password"
+                class="formControl"
+                placeholder="Password"
+                formControlName="password"
+                required
+              />
+            </div>
+
+            <!-- Calling SignIn Api from AuthService -->
+            <div class="formGroup">
+              <input
+                type="submit"
+                class="btn btnPrimary"
+                value="Submit"
+                [disabled]="!form.valid"
+              />
+            </div>
+
+            <div class="formGroup">
+              <span class="or"><span class="orInner">Or</span></span>
+            </div>
+
+            <!-- Calling GoogleAuth Api from AuthService -->
+            <div class="formGroup">
+              <button
+                type="button"
+                class="btn googleBtn"
+                (click)="authService.GoogleAuth()"
+              >
+                <i class="fab fa-google-plus-g"></i>
+                Log in with Google
+              </button>
+            </div>
+
+            <!-- Continue with Facebook -->
+            <div class="formGroup">
+              <button
+                type="button"
+                class="btn facebookBtn"
+                (click)="authService.FacebookAuth()"
+              >
+                <i class="fab fa-facebook"></i>
+                Continue with Facebook
+              </button>
+            </div>
+          </form>
+
+          <div class="forgotPassword">
+            <span routerLink="/auth/forgot-password">Forgot Password?</span>
           </div>
-
-          <div class="formGroup">
-            <input
-              type="password"
-              class="formControl"
-              placeholder="Password"
-              formControlName="password"
-              required
-            />
-          </div>
-
-          <!-- Calling SignIn Api from AuthService -->
-          <div class="formGroup">
-            <input
-              type="submit"
-              class="btn btnPrimary"
-              value="Submit"
-              [disabled]="!form.valid"
-            />
-          </div>
-
-          <div class="formGroup">
-            <span class="or"><span class="orInner">Or</span></span>
-          </div>
-
-          <!-- Calling GoogleAuth Api from AuthService -->
-          <div class="formGroup">
-            <button
-              type="button"
-              class="btn googleBtn"
-              (click)="authService.GoogleAuth()"
-            >
-              <i class="fab fa-google-plus-g"></i>
-              Log in with Google
-            </button>
-          </div>
-
-          <!-- Continue with Facebook -->
-          <div class="formGroup">
-            <button
-              type="button"
-              class="btn facebookBtn"
-              (click)="authService.FacebookAuth()"
-            >
-              <i class="fab fa-facebook"></i>
-              Continue with Facebook
-            </button>
-          </div>
-        </form>
-
-        <div class="forgotPassword">
-          <span routerLink="/forgot-password">Forgot Password?</span>
         </div>
-      </div>
 
-      <div class="redirectToLogin">
-        <span
-          >Don't have an account? &nbsp;<span
-            class="redirect"
-            routerLink="../signUp"
-            >Sign Up</span
-          ></span
-        >
+        <div class="redirectToLogin">
+          <span
+            >Don't have an account? &nbsp;<span
+              class="redirect"
+              routerLink="../signUp"
+              >Sign Up</span
+            ></span
+          >
+        </div>
       </div>
     </div>
   </div>

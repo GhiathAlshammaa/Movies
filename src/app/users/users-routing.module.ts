@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared';
 import {
   DashboardComponent,
+  ForgotPasswordComponent,
   SignInComponent,
   SignOutComponent,
   SignUpComponent,
@@ -39,6 +40,10 @@ const routes: Routes = [
         path: 'verify-email',
         component: VerifyEmailComponent,
       },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+      },
     ],
   },
 ];
@@ -50,6 +55,7 @@ const routes: Routes = [
     SignUpComponent,
     SignOutComponent,
     VerifyEmailComponent,
+    ForgotPasswordComponent,
   ],
   imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [
@@ -59,6 +65,7 @@ const routes: Routes = [
     SignUpComponent,
     SignOutComponent,
     VerifyEmailComponent,
+    ForgotPasswordComponent,
   ],
 })
 export class UsersRoutingModule {}

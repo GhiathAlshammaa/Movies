@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/services/auth.service';
 
 @Component({
@@ -7,7 +8,11 @@ import { AuthService } from '@app/shared/services/auth.service';
   styleUrls: ['sign-out.component.scss'],
 })
 export class SignOutComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+  }
 
   ngOnInit(): void {
     this.authService.SignOut();

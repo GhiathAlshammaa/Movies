@@ -36,13 +36,16 @@
         >
       </div>
       <div class="navbar-nav ml-auto">
-        <a
+        <button
+          (click)="(loginHandler)"
+          class="btn btn-link p-0"
           *ngIf="authService.isLoggedIn === false"
           routerLink="/auth/login"
+          [routerLink]="['/auth/login']"
           style="text-decoration: none; font-size: 16px; font-weight: bold"
         >
           Log In
-        </a>
+        </button>
 
         <div *ngIf="authService.userData as user" class="text-dark mr-2">
           <div *ngIf="authService.isLoggedIn === true">
@@ -65,43 +68,7 @@
           <span class="text-dark">|</span>
           Log Out
         </a>
-        <!-- <span class="ml-2">{{ authService.isLoggedIn | json }}</span> -->
       </div>
-      <!-- <div class="navbar-nav ml-auto" *ngIf="!authService.userData as user">
-        <a
-          class="nav-link"
-          aria-current="page"
-          routerLink="/auth"
-          routerLinkActive="active"
-          >Sign In
-        </a>
-
-        <div
-          *ngIf="authService.userData as user"
-          class="d-flex flex-row align-items-center"
-        >
-          <div *ngIf="user && user.emailVerified" class="text-dark mt-1">
-            Hello
-            <a
-              routerLink="/auth/dashboard"
-              class="text-success"
-              style="text-decoration: none"
-            >
-              {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
-            >
-            &nbsp; <span class="text-dark">|</span>
-          </div>
-
-          <button
-            *ngIf="user"
-            class="btn btn-link nav-link pb-1"
-            (click)="authService.SignOut()"
-            style="font-size: 16px"
-          >
-            <b>Sign Out</b>
-          </button>
-        </div>
-      </div> -->
     </div>
   </div>
 </nav>

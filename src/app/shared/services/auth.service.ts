@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   userData: firebase.User;
-  userState: any;
   //userData: Observable<firebase.User>;
   constructor(
     public afs: AngularFirestore,
@@ -62,7 +61,7 @@ export class AuthService {
       .then((result) => {
         result.user.updateProfile({ displayName: username });
         /* Call the SendVerificaitonMail() function when new user sign up and returns promise */
-        console.log('Sign Up Success!');
+        // console.log('Sign Up Success!');
         this.SendVerificationMail();
         this.SetUserData(result.user);
       })
@@ -97,6 +96,12 @@ export class AuthService {
     return user !== null ? true : false;
   }
 
+  // Returns true when email is verified
+  get isUserVerified(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null && user.emailVerified !== false ? true : false;
+  }
+
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
@@ -114,7 +119,6 @@ export class AuthService {
       .then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['auth/dashboard']);
-          console.log('Navigation to auth/dashboard');
         });
         this.SetUserData(result.user);
       })
@@ -142,12 +146,13 @@ export class AuthService {
     });
   }
 
+
   // Sign out
   SignOut() {
-    console.log('Sign Out!');
+    // console.log('Sign Out!');
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['./auth/signOut']);
+      this.router.navigate(['./auth/login']);
     });
   }
 }
