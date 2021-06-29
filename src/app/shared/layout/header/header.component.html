@@ -38,23 +38,18 @@
       <div class="navbar-nav ml-auto">
         <button
           (click)="(loginHandler)"
-          class="btn btn-link p-0"
+          class="btn btn-link p-0 auth-link"
           *ngIf="authService.isLoggedIn === false"
           routerLink="/auth/login"
           [routerLink]="['/auth/login']"
-          style="text-decoration: none; font-size: 16px; font-weight: bold"
         >
-          Log In
+          Log in
         </button>
 
         <div *ngIf="authService.userData as user" class="text-dark mr-2">
           <div *ngIf="authService.isLoggedIn === true">
             Hello
-            <a
-              routerLink="/auth/dashboard"
-              class="text-success"
-              style="text-decoration: none; font-weight: bold"
-            >
+            <a routerLink="/auth/dashboard" class="dashboard-link auth-link">
               {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
             >
           </div>
@@ -63,10 +58,10 @@
         <a
           *ngIf="authService.isLoggedIn === true"
           routerLink="/auth/signOut"
-          style="text-decoration: none; font-size: 16px; font-weight: bold"
+          class="auth-link"
         >
           <span class="text-dark">|</span>
-          Log Out
+          <span class="ml-2">Log out</span>
         </a>
       </div>
     </div>

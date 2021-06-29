@@ -11,3 +11,22 @@
     left: auto !important;
     right: 0px;
 }
+
+.auth-link {
+    text-decoration: none; 
+    font-size: 16px; 
+    font-weight: normal;
+    color: rgba(0,0,0,.5);
+}
+
+.auth-link:hover {
+    color:rgba(0,0,0,.9);
+}
+
+.dashboard-link {
+    color: #5cb85c !important;
+}
+
+.dashboard-link:hover {
+    color: green !important;
+}
