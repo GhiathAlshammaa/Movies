@@ -1,4 +1,4 @@
-<div *ngIf="authService.isLoggedIn === true && !authService.isUserVerified ">
+<div *ngIf="authService.isLoggedIn === true && !authService.isUserVerified">
   <div class="authContainer" *ngIf="authService.userData as user">
     <div class="displayTable">
       <div class="displayTableCell">
@@ -19,8 +19,8 @@
                 align-items-center
                 text-decoration-none
                 font-weight-bold
+                p-0
               "
-              style="padding: 0"
             >
               <a routerLink="../verify-email">Verification</a>
               <span> &nbsp; or &nbsp; </span>
