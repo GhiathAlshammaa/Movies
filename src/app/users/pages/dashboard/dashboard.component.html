@@ -1,5 +1,5 @@
 <!-- Top navigation -->
-<div *ngIf="activeRightBlock">
+<div>
   <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a
       class="
@@ -103,6 +103,7 @@
                     <button
                       class="btn btn-link p-0 terminate-btn text-danger"
                       (click)="terminateHandler()"
+                      *ngIf="!authService.isUserAuthByProvider"
                     >
                       Terminate {{ user.displayName }} Account
                     </button>
@@ -117,7 +118,7 @@
   </div>
 </div>
 
-<div *ngIf="!activeRightBlock">
+<!-- <div *ngIf="!authService.isUserVerified">
   <div class="authContainer">
     <div class="displayTable">
       <div class="displayTableCell">
@@ -135,4 +136,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

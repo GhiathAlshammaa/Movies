@@ -104,6 +104,14 @@ export class AuthService {
     return user !== null && user.emailVerified !== false ? true : false;
   }
 
+  // return true if the user auth by provider
+  get isUserAuthByProvider(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null && user.providerData[0].providerId !== 'password'
+      ? true
+      : false;
+  }
+
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new firebase.auth.GoogleAuthProvider());

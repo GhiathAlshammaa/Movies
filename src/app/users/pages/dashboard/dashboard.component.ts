@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@app/shared/services/auth.service';
+import { AuthService } from '@app/shared/services/authservice';
 
 import swal from 'sweetalert';
 
@@ -9,9 +9,8 @@ import swal from 'sweetalert';
   styleUrls: ['dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  activeRightBlock;
   constructor(public authService: AuthService) {
-    this.activeRightBlock = this.authService.isUserVerified;
+    console.log(authService.isUserVerified);
   }
 
   ngOnInit(): void {}

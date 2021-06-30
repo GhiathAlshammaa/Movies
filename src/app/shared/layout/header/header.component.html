@@ -35,35 +35,35 @@
           >Movie List</a
         >
       </div>
-      <div class="navbar-nav ml-auto">
-        <button
-          (click)="(loginHandler)"
-          class="btn btn-link p-0 auth-link"
-          *ngIf="authService.isLoggedIn === false"
-          routerLink="/auth/login"
-          [routerLink]="['/auth/login']"
-        >
-          Log in
-        </button>
+      <!-- <div class="navbar-nav ml-auto"> -->
+      <button
+        (click)="(loginHandler)"
+        class="btn btn-link p-0 auth-link ml-auto"
+        *ngIf="authService.isLoggedIn === false"
+        routerLink="/auth/login"
+        [routerLink]="['/auth/login']"
+      >
+        Log in
+      </button>
 
-        <div *ngIf="authService.userData as user" class="text-dark mr-2">
-          <div *ngIf="authService.isLoggedIn === true">
-            Hello
-            <a routerLink="/auth/dashboard" class="dashboard-link auth-link">
-              {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
-            >
-          </div>
+      <div *ngIf="authService.userData as user" class="text-dark mr-2">
+        <div *ngIf="authService.isLoggedIn === true">
+          Hello
+          <a routerLink="/auth/dashboard" class="dashboard-link auth-link">
+            {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
+          >
         </div>
-
-        <a
-          *ngIf="authService.isLoggedIn === true"
-          routerLink="/auth/signOut"
-          class="auth-link"
-        >
-          <span class="text-dark">|</span>
-          <span class="ml-2">Log out</span>
-        </a>
       </div>
+
+      <a
+        *ngIf="authService.isLoggedIn === true"
+        routerLink="/auth/signOut"
+        class="auth-link"
+      >
+        <span class="text-dark">|</span>
+        <span class="ml-2">Log out</span>
+      </a>
+      <!-- </div> -->
     </div>
   </div>
 </nav>
