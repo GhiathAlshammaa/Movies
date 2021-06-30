@@ -8,12 +8,15 @@ body {
   vertical-align: text-bottom;
 }
 
-/*
-.dasboard-text {
-  font-size: 2rem;
-  font-weight: 500;
+.terminate-btn {
+  text-decoration: none;
+  color: #d9534f;
 }
-*/
+
+.terminate-btn:hover {
+  text-decoration: none;
+  font-weight: bold;
+}
 
 /*
  * Sidebar
@@ -151,6 +154,10 @@ h2 {
   overflow: hidden;
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
+}
+
+.authBlock > * {
+  color: black;
 }
 
 .redirectToLogin {

@@ -36,6 +36,7 @@
     "ng-image-slider": "^2.8.0",
     "popper.js": "^1.14.3",
     "rxjs": "~6.6.0",
+    "sweetalert": "^2.1.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

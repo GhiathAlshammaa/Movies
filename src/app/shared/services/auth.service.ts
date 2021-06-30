@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   userData: firebase.User;
+  currentPassword;
   //userData: Observable<firebase.User>;
   constructor(
     public afs: AngularFirestore,
@@ -37,6 +38,7 @@ export class AuthService {
 
   // Sign in with email/password
   SignIn(email, password) {
+    this.currentPassword = password;
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
@@ -146,13 +148,32 @@ export class AuthService {
     });
   }
 
-
   // Sign out
   SignOut() {
     // console.log('Sign Out!');
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['./auth/login']);
+    });
+  }
+
+  // Remove a Current User Account
+  async removeUserAccount() {
+    const user = await firebase.auth().currentUser;
+  }
+
+  removeUser(password = this.currentPassword) {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        const credential = firebase.auth.EmailAuthProvider.credential(
+          user.email,
+          password
+        );
+        user.reauthenticateWithCredential(credential).then(() => {
+          user.delete();
+          this.router.navigate(['./auth/login']);
+        });
+      }
     });
   }
 }
