@@ -24,15 +24,21 @@ export class VerifyEmailComponent implements OnInit {
         if (user) {
           user.reload().then((ok) => {
             if (firebase.auth().currentUser?.emailVerified) {
-              // this.props.history.push("/verification-email-verified")
-              // window.alert('Email verified now!');
               this.activeToast = true;
-              console.log(`activeToast: ${this.activeToast}`);
+
+              let user = JSON.parse(localStorage.getItem('user'));
+              user.emailVerified = true;
+
+              localStorage.setItem('user', JSON.stringify(user));
+              JSON.parse(localStorage.getItem('user'));
+
+              this.authService.SetUserData(user);
+
               clearInterval(this.checkForVerifiedInterval);
             }
           });
         } else {
-          console.log('No User loged in!');
+          // console.log('No User loged in!');
         }
       });
     }, 1000);

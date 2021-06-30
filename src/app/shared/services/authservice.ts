@@ -6,6 +6,7 @@ import {
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { User } from '@app/core/models';
+import { AuthGuard } from '@app/users/guard/auth-login-and-verified.guard';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 
@@ -94,7 +95,6 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    // return user !== null && user.emailVerified !== false ? true : false;
     return user !== null ? true : false;
   }
 
@@ -166,10 +166,6 @@ export class AuthService {
   }
 
   // Remove a Current User Account
-  async removeUserAccount() {
-    const user = await firebase.auth().currentUser;
-  }
-
   removeUser(password = this.currentPassword) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -177,10 +173,15 @@ export class AuthService {
           user.email,
           password
         );
-        user.reauthenticateWithCredential(credential).then(() => {
-          user.delete();
-          this.router.navigate(['./auth/login']);
-        });
+        user
+          .reauthenticateWithCredential(credential)
+          .then(() => {
+            user.delete();
+            this.router.navigate(['./auth/login']);
+          })
+          .catch((error) => {
+            alert(error);
+          });
       }
     });
   }

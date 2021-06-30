@@ -9,9 +9,7 @@ import swal from 'sweetalert';
   styleUrls: ['dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(public authService: AuthService) {
-    console.log(authService.isUserVerified);
-  }
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {}
 
