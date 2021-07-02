@@ -11,10 +11,10 @@ import { MoviesModule } from './movies';
 import { movieReducer } from './movies/state/movie.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { UsersModule } from './users/users.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AdminModule } from './admin';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     CoreModule,
     StoreModule.forRoot({}, {}),
     AppRoutingModule,
-    UsersModule,
+    AdminModule,
     MoviesModule,
     StoreDevtoolsModule.instrument({
       name: 'movies',

@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'auth',
     data: { preload: false }, // change to true, when user use this route
-    loadChildren: () => import('@app/users').then((m) => m.UsersModule),
+    loadChildren: () => import('@app/admin').then((m) => m.AdminModule),
   },
   {
     path: 'movies',

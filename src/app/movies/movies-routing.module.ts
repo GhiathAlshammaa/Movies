@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared';
-import { MoviesPagesModule } from './pages/movies-pages.module';
 
 import {
   MovieListComponent,
@@ -56,7 +55,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [SharedModule, MoviesPagesModule, RouterModule.forChild(routes)],
+  imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class MoviesRoutingModule {}

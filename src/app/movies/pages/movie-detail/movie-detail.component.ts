@@ -28,11 +28,11 @@ export class MovieDetailComponent implements OnInit {
     this.backTitle = this.route.snapshot.paramMap.get('backTitle');
 
     // check if the backTitle was a Category and improve it
-    console.log(`backTitle: ${this.backTitle}`);
+    // console.log(`backTitle: ${this.backTitle}`);
     const categoryTitle = Categories.find(
       (c) => c.value === this.backTitle
     )?.title;
-    console.log(`categoryTitle: ${categoryTitle}`);
+    // console.log(`categoryTitle: ${categoryTitle}`);
     if (categoryTitle) {
       this.backTitle = categoryTitle;
     }

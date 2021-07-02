@@ -2,20 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared';
 import { AuthLoginGuard, AuthVerifiedGuard } from './guard';
-
 import {
-  DashboardComponent,
-  ForgotPasswordComponent,
   SignInComponent,
-  SignOutComponent,
   SignUpComponent,
+  SignOutComponent,
   VerifyEmailComponent,
-} from './pages';
+  ForgotPasswordComponent,
+} from './pages/auth';
+
+import { DashboardComponent } from './pages/dashboard';
 
 const routes: Routes = [
   {
     path: '',
-    // component: SignInComponent,
     children: [
       {
         path: '',
@@ -54,23 +53,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    SignInComponent,
-    SignUpComponent,
-    SignOutComponent,
-    VerifyEmailComponent,
-    ForgotPasswordComponent,
-  ],
+  declarations: [],
   imports: [SharedModule, RouterModule.forChild(routes)],
-  exports: [
-    RouterModule,
-    DashboardComponent,
-    SignInComponent,
-    SignUpComponent,
-    SignOutComponent,
-    VerifyEmailComponent,
-    ForgotPasswordComponent,
-  ],
+  exports: [RouterModule],
 })
-export class UsersRoutingModule {}
+export class AdminRoutingModule {}

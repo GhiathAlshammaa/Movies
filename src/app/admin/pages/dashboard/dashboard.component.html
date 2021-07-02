@@ -97,7 +97,13 @@
                     Email: <strong>{{ user.email }}</strong>
                   </p>
                   <p>
-                    Email Verified: <strong>{{ user.emailVerified }}</strong>
+                    Email Verified:
+                    <span class="text-danger" *ngIf="!user.emailVerified">{{
+                      user.emailVerified
+                    }}</span>
+                    <span class="text-success" *ngIf="user.emailVerified">{{
+                      user.emailVerified
+                    }}</span>
                   </p>
                   <p>
                     <button

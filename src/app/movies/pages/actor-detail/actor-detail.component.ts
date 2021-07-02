@@ -14,7 +14,6 @@ export class ActorDetailComponent implements OnInit {
   actor$;
   cast$;
 
-
   actorId = 0;
   errorMsg: any;
   movieTitle: string;
@@ -27,7 +26,7 @@ export class ActorDetailComponent implements OnInit {
     this.actorId = +this.route.snapshot.paramMap.get('id');
     this.movieTitle = this.route.snapshot.paramMap.get('movieTitle');
     // console.log(`actorId: ${this.actorId}`);
-    console.log(`movieTitle: ${this.movieTitle}`);
+    // console.log(`movieTitle: ${this.movieTitle}`);
 
     this.actor$ = this.staffService.actorById$(this.actorId).pipe(
       catchError((err) => {
