@@ -1,4 +1,8 @@
-<div *ngIf="authService.isLoggedIn === true && !authService.isUserVerified">
+<div
+  *ngIf="
+    authService.isLoggedIn === true && authService.isUserVerified === false
+  "
+>
   <div class="authContainer" *ngIf="authService.userData as user">
     <div class="displayTable">
       <div class="displayTableCell">

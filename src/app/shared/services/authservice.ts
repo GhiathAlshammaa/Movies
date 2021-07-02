@@ -6,16 +6,15 @@ import {
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { User } from '@app/core/models';
-import { AuthGuard } from '@app/users/guard/auth-login-and-verified.guard';
 import firebase from 'firebase/app';
-import { Observable } from 'rxjs';
+import 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userData: firebase.User;
-  currentPassword;
+  currentPassword: any;
   //userData: Observable<firebase.User>;
   constructor(
     public afs: AngularFirestore,
@@ -39,14 +38,18 @@ export class AuthService {
 
   // Sign in with email/password
   SignIn(email, password) {
-    this.currentPassword = password;
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
+        this.currentPassword = String(password);
         this.SetUserData(result.user);
-        if (result.user && result.user.emailVerified) {
+
+        this.userData = result.user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+
+        if (result.user) {
           this.ngZone.run(() => {
-            this.router.navigate(['auth/dashboard']);
+            this.router.navigate(['/auth/dashboard']);
           });
         } else {
           this.router.navigate(['auth/verify-email']);
@@ -65,6 +68,7 @@ export class AuthService {
         result.user.updateProfile({ displayName: username });
         /* Call the SendVerificaitonMail() function when new user sign up and returns promise */
         // console.log('Sign Up Success!');
+        this.currentPassword = password;
         this.SendVerificationMail();
         this.SetUserData(result.user);
       })
@@ -141,6 +145,8 @@ export class AuthService {
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   SetUserData(user) {
+    // const ref:DatabaseReference  = FirebaseDatabase.getInstance().getReference("users/{userId}");
+
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -166,7 +172,8 @@ export class AuthService {
   }
 
   // Remove a Current User Account
-  removeUser(password = this.currentPassword) {
+  removeUser(password = '') {
+    password = !password ? this.currentPassword : password;
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         const credential = firebase.auth.EmailAuthProvider.credential(
@@ -176,7 +183,31 @@ export class AuthService {
         user
           .reauthenticateWithCredential(credential)
           .then(() => {
-            user.delete();
+            // Remove User Account of Authentication
+            user
+              .delete()
+              .then(() => {
+                // Remove User Account of DB
+                var userRef = firebase
+                  .firestore()
+                  .collection('users')
+                  .doc(user.uid);
+                userRef
+                  .delete()
+                  .then(() => {
+                    // console.log(`User ${user.displayName} of DB has deleted`);
+                  })
+                  // An error happened during deleting User of DB.
+                  .catch((error) => {
+                    // `Error during deleting User ${user.displayName} of DB happened, ${error}`;
+                  });
+              })
+              // An error happened during deleting User of Authentication.
+              .catch(function (error) {
+                // console.log(
+                //   `Error during deleting User ${user.displayName} of Authentication happened, ${error}`
+                // );
+              });
             this.router.navigate(['./auth/login']);
           })
           .catch((error) => {

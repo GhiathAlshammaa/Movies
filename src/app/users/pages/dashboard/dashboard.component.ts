@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
           icon: 'success',
         });
       } else {
-        swal('Your User Account is still available!');
+        swal('Your User did not remove!');
       }
     });
   }

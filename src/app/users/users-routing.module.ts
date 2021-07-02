@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared';
-import { AuthGuard } from './guard/auth-login-and-verified.guard';
-import { AuthLoginGuard } from './guard/auth-login.guard';
+import { AuthLoginGuard, AuthVerifiedGuard } from './guard';
+
 import {
   DashboardComponent,
   ForgotPasswordComponent,
@@ -29,7 +29,7 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthVerifiedGuard, AuthLoginGuard],
       },
       {
         path: 'signUp',
@@ -48,7 +48,6 @@ const routes: Routes = [
       {
         path: 'forgot-password',
         component: ForgotPasswordComponent,
-        canActivate: [AuthGuard],
       },
     ],
   },

@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthVerifiedGuard implements CanActivate {
   constructor(public authService: AuthService, public router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.isUserVerified !== true) {
+    if (this.authService.isUserVerified === false) {
       this.router.navigate(['auth/login']);
     }
     return true;
