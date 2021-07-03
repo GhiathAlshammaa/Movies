@@ -7,7 +7,7 @@ import { SharedModule } from './shared';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
-    path: 'auth',
+    path: 'admin',
     data: { preload: false }, // change to true, when user use this route
     loadChildren: () => import('@app/admin').then((m) => m.AdminModule),
   },

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   ForgotPasswordComponent,
   SignInComponent,
@@ -8,6 +7,7 @@ import {
   VerifyEmailComponent,
 } from '.';
 import { SharedModule } from '@app/shared';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +17,14 @@ import { SharedModule } from '@app/shared';
     SignUpComponent,
     VerifyEmailComponent,
   ],
-  imports: [SharedModule],
+  imports: [SharedModule, AuthRoutingModule],
   exports: [
     ForgotPasswordComponent,
     SignInComponent,
     SignOutComponent,
     SignUpComponent,
     VerifyEmailComponent,
+    AuthRoutingModule,
   ],
 })
 export class AuthModule {}

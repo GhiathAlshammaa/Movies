@@ -5,7 +5,7 @@
         <div *ngIf="!activeToast">
           <h3>Thank You for Registering</h3>
 
-          <div >
+          <div>
             <div class="formGroup" *ngIf="authService.userData as user">
               <p class="text-center">
                 We have sent a confirmation email to
@@ -42,7 +42,7 @@
             <button
               type="button"
               class="btn btn-link btnWarning text-decoration-none"
-              routerLink="../dashboard"
+              routerLink="../../dashboard"
             >
               <i class="fa fa-id-badge"></i>
               Dashboard

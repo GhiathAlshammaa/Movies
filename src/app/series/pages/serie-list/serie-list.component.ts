@@ -11,6 +11,6 @@ export class SerieListComponent implements OnInit {
 
   ngOnInit(): void {
     const pageTitle = this.route.snapshot.data['pageTitle'];
-    console.log(`pageTitle: ${pageTitle}`);
+    // console.log(`pageTitle: ${pageTitle}`);
   }
 }

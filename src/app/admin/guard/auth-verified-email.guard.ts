@@ -23,7 +23,7 @@ export class AuthVerifiedGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.authService.isUserVerified === false) {
-      this.router.navigate(['auth/login']);
+      this.router.navigate(['admin/auth/login']);
     }
     return true;
   }

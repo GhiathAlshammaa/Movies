@@ -11,8 +11,8 @@ export class SerieDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log(`id: ${id}`);
+    // console.log(`id: ${id}`);
     const pageTitle = this.route.snapshot.data['pageTitle'];
-    console.log(`pageTitle: ${pageTitle}`);
+    // console.log(`pageTitle: ${pageTitle}`);
   }
 }

@@ -49,10 +49,10 @@ export class AuthService {
 
         if (result.user) {
           this.ngZone.run(() => {
-            this.router.navigate(['/auth/dashboard']);
+            this.router.navigate(['/admin/dashboard']);
           });
         } else {
-          this.router.navigate(['auth/verify-email']);
+          this.router.navigate(['admin/auth/verify-email']);
         }
       })
       .catch((error) => {
@@ -77,14 +77,14 @@ export class AuthService {
       });
   }
 
-  // Send email verfificaiton when new user sign up
+  // Send email verification when new user sign up
   async SendVerificationMail() {
     return (await this.afAuth.currentUser).sendEmailVerification().then(() => {
-      this.router.navigate(['./auth/verify-email']);
+      this.router.navigate(['./admin/auth/verify-email']);
     });
   }
 
-  // Reset Forggot password
+  // Reset Forget password
   ForgotPassword(passwordResetEmail) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
@@ -96,7 +96,7 @@ export class AuthService {
       });
   }
 
-  // Returns true when user is looged in and email is verified
+  // Returns true when user is logged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return user !== null ? true : false;
@@ -132,7 +132,7 @@ export class AuthService {
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['auth/dashboard']);
+          this.router.navigate(['admin/dashboard']);
         });
         this.SetUserData(result.user);
       })
@@ -167,7 +167,7 @@ export class AuthService {
     // console.log('Sign Out!');
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['./auth/login']);
+      this.router.navigate(['./admin/auth/login']);
     });
   }
 
@@ -208,7 +208,7 @@ export class AuthService {
                 //   `Error during deleting User ${user.displayName} of Authentication happened, ${error}`
                 // );
               });
-            this.router.navigate(['./auth/login']);
+            this.router.navigate(['./admin/auth/login']);
           })
           .catch((error) => {
             alert(error);
