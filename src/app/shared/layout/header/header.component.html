@@ -49,7 +49,10 @@
       <div *ngIf="authService.userData as user" class="text-dark mr-2">
         <div *ngIf="authService.isLoggedIn === true">
           Hello
-          <a routerLink="/admin/dashboard" class="dashboard-link auth-link">
+          <a
+            routerLink="/admin/dashboard/home"
+            class="dashboard-link auth-link"
+          >
             {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
           >
         </div>

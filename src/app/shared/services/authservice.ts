@@ -49,7 +49,7 @@ export class AuthService {
 
         if (result.user) {
           this.ngZone.run(() => {
-            this.router.navigate(['/admin/dashboard']);
+            this.router.navigate(['/admin/dashboard/home']);
           });
         } else {
           this.router.navigate(['admin/auth/verify-email']);
@@ -132,7 +132,7 @@ export class AuthService {
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['admin/dashboard']);
+          this.router.navigate(['admin/dashboard/home']);
         });
         this.SetUserData(result.user);
       })
