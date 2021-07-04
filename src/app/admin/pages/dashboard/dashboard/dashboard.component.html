@@ -34,7 +34,7 @@
               <a
                 class="nav-link"
                 href="#"
-                routerLink="../user-profile"
+                [routerLink]="['user-profile']"
                 routerLinkActive="active"
               >
                 <i class="fas fa-user mr-2"></i>
@@ -43,7 +43,11 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLink="../list">
+              <a
+                class="nav-link"
+                [routerLink]="['list']"
+                routerLinkActive="active"
+              >
                 <i class="fa fa-film mr-2"></i>
                 <span>My List</span>
               </a>
@@ -62,63 +66,7 @@
 
       <!-- Main content -->
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-4">
-        <div class="inner-adjust">
-          <div class="pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">User Profile</h1>
-          </div>
-          <!-- Show user data when logged in -->
-          <div class="row" *ngIf="authService.userData as user">
-            <div class="col-md-12">
-              <div class="media">
-                <img
-                  class="
-                    align-self-start
-                    mr-5
-                    mt-4
-                    img-thumbnail
-                    rounded-circle
-                  "
-                  src="{{
-                    user.photoURL ? user.photoURL : '/assets/dummy-user.png'
-                  }}"
-                  alt="{{ user.displayName }}"
-                />
-                <div class="media-body mt-5">
-                  <h1>
-                    Hello:
-                    <strong>{{
-                      user.displayName ? user.displayName : 'Unknown'
-                    }}</strong>
-                  </h1>
-                  <!-- <p>
-                    User ID: <strong>{{ user.uid }}</strong>
-                  </p> -->
-                  <p>
-                    Email: <strong>{{ user.email }}</strong>
-                  </p>
-                  <p>
-                    Email Verified:
-                    <span class="text-danger" *ngIf="!user.emailVerified">{{
-                      user.emailVerified
-                    }}</span>
-                    <span class="text-success" *ngIf="user.emailVerified">{{
-                      user.emailVerified
-                    }}</span>
-                  </p>
-                  <p>
-                    <button
-                      class="btn btn-link p-0 terminate-btn text-danger"
-                      (click)="terminateHandler()"
-                      *ngIf="!authService.isUserAuthByProvider"
-                    >
-                      Terminate {{ user.displayName }} Account
-                    </button>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <router-outlet></router-outlet>
       </main>
     </div>
   </div>

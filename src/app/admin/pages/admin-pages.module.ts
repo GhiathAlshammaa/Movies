@@ -5,7 +5,7 @@ import { AdminComponentsModule } from './components/admin-components.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
-  imports: [SharedModule, AuthModule, DashboardModule, AdminComponentsModule],
-  exports: [AuthModule, DashboardModule, AdminComponentsModule],
+  imports: [SharedModule, AuthModule, DashboardModule],
+  exports: [AuthModule, DashboardModule],
 })
 export class AdminPagesModule {}

@@ -1,33 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthLoginGuard } from '@app/admin/guard';
-import { PageNotFoundComponent } from '@app/pages';
 import { SharedModule } from '@app/shared';
-import { DashboardComponent, ListComponent } from '.';
+import { DashboardComponent, ListPageComponent, UserProfileComponent } from '.';
+import { AdminComponentsModule } from '../components/admin-components.module';
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    // component: DashboardComponent,
+    component: DashboardComponent,
+    canActivate: [AuthLoginGuard],
+
     children: [
       {
         path: '',
-        component: PageNotFoundComponent,
-        canActivate: [AuthLoginGuard],
+        component: DashboardComponent,
       },
       {
         path: 'home',
         pathMatch: 'full',
-        redirectTo: 'user-profile',
+        redirectTo: '',
       },
       {
         path: 'user-profile',
-        component: DashboardComponent,
+        component: UserProfileComponent,
         canActivate: [AuthLoginGuard],
       },
       {
         path: 'list',
-        component: ListComponent,
+        component: ListPageComponent,
         canActivate: [AuthLoginGuard],
       },
     ],
@@ -35,7 +36,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  declarations: [DashboardComponent, UserProfileComponent, ListPageComponent],
+  imports: [SharedModule, AdminComponentsModule, RouterModule.forChild(routes)],
+  exports: [
+    RouterModule,
+    AdminComponentsModule,
+    DashboardComponent,
+    UserProfileComponent,
+    ListPageComponent,
+  ],
 })
 export class DashboardRoutingModule {}

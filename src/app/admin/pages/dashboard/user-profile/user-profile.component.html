@@ -1,0 +1,47 @@
+<div class="inner-adjust">
+  <div class="pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">User Profile</h1>
+  </div>
+  <div class="row" *ngIf="authService.userData as user">
+    <div class="col-md-12">
+      <div class="media">
+        <img
+          class="align-self-start mr-5 mt-4 img-thumbnail rounded-circle"
+          src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
+          alt="{{ user.displayName }}"
+        />
+        <div class="media-body mt-5">
+          <h1>
+            Hello:
+            <strong>{{
+              user.displayName ? user.displayName : 'Unknown'
+            }}</strong>
+          </h1>
+
+          <p>
+            Email: <strong>{{ user.email }}</strong>
+          </p>
+          <p>
+            Email Verified:
+            <span class="text-danger" *ngIf="!user.emailVerified">{{
+              user.emailVerified
+            }}</span>
+            <span class="text-success" *ngIf="user.emailVerified">{{
+              user.emailVerified
+            }}</span>
+          </p>
+          <p>
+            <button
+              class="btn btn-link p-0 terminate-btn text-danger"
+              (click)="terminateHandler()"
+              *ngIf="!authService.isUserAuthByProvider"
+            >
+              Terminate {{ user.displayName }} Account
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

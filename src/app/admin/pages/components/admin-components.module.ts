@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '@app/shared';
+import { ListComponent } from './list/list.component';
+import { MaterialModule } from '@app/material/material.module';
 
 @NgModule({
-  declarations: [],
-  imports: [SharedModule],
-  exports: [],
+  declarations: [ListComponent],
+  imports: [CommonModule, MaterialModule],
+  exports: [ListComponent],
 })
 export class AdminComponentsModule {}
