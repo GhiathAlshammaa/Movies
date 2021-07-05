@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field class="w-100">
+    <input matInput placeholder="List Title" formControlName="listTitle" />
+  </mat-form-field>
+  <br />
+  <mat-form-field class="w-100">
+    <textarea
+      matInput
+      placeholder="List Description"
+      formControlName="listDes"
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="5"
+    ></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button mr-2" (click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>
