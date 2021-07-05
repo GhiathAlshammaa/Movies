@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ListComponent } from './list-page/list/list.component';
 import { MaterialModule } from '@app/material/material.module';
 import { AddListButtonComponent } from './list-page/add/add-list-button/add-list-button.component';

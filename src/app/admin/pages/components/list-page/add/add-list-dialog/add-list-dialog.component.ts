@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -9,8 +9,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AddListDialogComponent implements OnInit {
   form: FormGroup;
-  listDes: string;
-  listTitle: string;
+  description: string;
+  name: string;
   title: string;
 
   constructor(
@@ -19,18 +19,18 @@ export class AddListDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.title = data.dialogTitle;
-    this.listDes = '';
-    this.listTitle = '';
+    this.description = '';
+    this.name = '';
   }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      listTitle: [this.listTitle, []],
-      listDes: [this.listDes, []],
+      name: [this.name, [Validators.required, Validators.minLength(6)]],
+      description: [this.description, []],
     });
   }
 
-  save() {
+  submitHandler() {
     this.dialogRef.close(this.form.value);
   }
 

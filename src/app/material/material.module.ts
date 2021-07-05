@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSortModule,
   ],
   exports: [
     MatTableModule,
@@ -28,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSortModule,
   ],
 })
 export class MaterialModule {}

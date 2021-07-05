@@ -1,5 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { List } from '@app/core/models';
+import { DashboardService } from '@app/core/services';
+import { HandleError } from '@app/core/utils';
 import { AddListDialogComponent } from '../add-list-dialog/add-list-dialog.component';
 
 export interface DialogData {
@@ -12,11 +15,14 @@ export interface DialogData {
   styleUrls: ['add-list-button.component.scss'],
 })
 export class AddListButtonComponent implements OnInit {
-  id: string;
   name: string;
   description: string;
-
-  constructor(public dialog: MatDialog) {}
+  list: List;
+  lists$;
+  constructor(
+    public dialog: MatDialog,
+    private dashboardService: DashboardService
+  ) {}
 
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
@@ -25,7 +31,6 @@ export class AddListButtonComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      id: 1,
       dialogTitle: 'Add a new List',
     };
 
@@ -34,9 +39,14 @@ export class AddListButtonComponent implements OnInit {
       data: dialogConfig.data,
     });
 
-    dialogRef
-      .afterClosed()
-      .subscribe((data) => console.log('Dialog output:', data));
+    // dialogRef.afterClosed().subscribe((data) => (this.list = data));
+    const uid = JSON.parse(localStorage.getItem('user')).uid;
+    // console.log(`uid: ${uid}`);
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.dashboardService?.SetListData(data as List, uid);
+      }
+    });
   }
 
   ngOnInit(): void {}

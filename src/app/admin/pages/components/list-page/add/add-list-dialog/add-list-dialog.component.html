@@ -2,14 +2,14 @@
 
 <mat-dialog-content [formGroup]="form">
   <mat-form-field class="w-100">
-    <input matInput placeholder="List Title" formControlName="listTitle" />
+    <input matInput placeholder="List Title" formControlName="name" />
   </mat-form-field>
   <br />
   <mat-form-field class="w-100">
     <textarea
       matInput
       placeholder="List Description"
-      formControlName="listDes"
+      formControlName="description"
       cdkTextareaAutosize
       #autosize="cdkTextareaAutosize"
       cdkAutosizeMinRows="3"
@@ -20,5 +20,12 @@
 
 <mat-dialog-actions>
   <button class="mat-raised-button mr-2" (click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+  <button
+    class="mat-raised-button mat-primary"
+    type="submit"
+    [disabled]="!form.valid"
+    (click)="submitHandler()"
+  >
+    Save
+  </button>
 </mat-dialog-actions>
