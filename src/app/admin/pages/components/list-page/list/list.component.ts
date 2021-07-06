@@ -12,7 +12,6 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  lists$;
   constructor(public dashboardService: DashboardService) {}
   displayedColumns: string[] = ['name', 'description', 'controls'];
   dataSource = new MatTableDataSource<List>();
@@ -30,11 +29,10 @@ export class ListComponent implements OnInit {
       this.dataSource.data = data;
       // this.dataSource.data.unshift(...data);
     });
+  }
 
-    // this.tableSort?.sort({
-    //   id: 'no', // The column name specified for matColumnDef attribute
-    //   start: 'asc', // Can be 'asc', 'desc' or null,
-    //   disableClear: false,
-    // });
+  handlerDeleteList(id) {
+    // console.log(`ListId: ${id}`);
+    this.dashboardService.deleteList(id);
   }
 }

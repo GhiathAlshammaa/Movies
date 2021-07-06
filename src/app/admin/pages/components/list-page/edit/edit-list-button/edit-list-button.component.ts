@@ -9,14 +9,15 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'add-list-button',
-  templateUrl: 'add-list-button.component.html',
-  styleUrls: ['add-list-button.component.scss'],
+  selector: 'edit-list-button',
+  templateUrl: 'edit-list-button.component.html',
+  styleUrls: ['edit-list-button.component.scss'],
 })
-export class AddListButtonComponent implements OnInit {
+export class EditListButtonComponent implements OnInit {
   name: string;
   description: string;
   list: List;
+
   constructor(
     public dialog: MatDialog,
     private dashboardService: DashboardService
@@ -29,7 +30,7 @@ export class AddListButtonComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      dialogTitle: 'Add a new List',
+      dialogTitle: `Edit the List ${null}`,
     };
 
     const dialogRef = this.dialog.open(ListDialogComponent, {
@@ -46,6 +47,4 @@ export class AddListButtonComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  addList() {}
 }

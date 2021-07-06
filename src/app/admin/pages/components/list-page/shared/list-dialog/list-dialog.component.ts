@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-list-dialog',
-  templateUrl: 'add-list-dialog.component.html',
-  styleUrls: ['add-list-dialog.component.scss'],
+  selector: 'add-list-dialog',
+  templateUrl: 'list-dialog.component.html',
+  styleUrls: ['list-dialog.component.scss'],
 })
-export class AddListDialogComponent implements OnInit {
+export class ListDialogComponent implements OnInit {
   form: FormGroup;
   description: string;
   name: string;
@@ -15,7 +15,7 @@ export class AddListDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<AddListDialogComponent>,
+    private dialogRef: MatDialogRef<ListDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.title = data.dialogTitle;

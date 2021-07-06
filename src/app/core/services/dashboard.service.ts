@@ -29,9 +29,17 @@ export class DashboardService {
     });
   }
 
-  listData$ = this.afs.collection('lists').valueChanges();
-
   getLists(): Observable<any[]> {
     return this.afs.collection('lists').valueChanges();
+  }
+
+  deleteList(listId) {
+    this.afs
+      .collection('lists')
+      .doc(listId)
+      .delete()
+      .then(() => {
+        console.log(`The List ${listId} has removed`);
+      });
   }
 }
