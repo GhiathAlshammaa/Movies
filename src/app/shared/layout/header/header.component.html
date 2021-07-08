@@ -55,18 +55,13 @@
           >
             {{ user.displayName ? user.displayName : 'Unkonwn' }}</a
           >
+
+          <a routerLink="/admin/auth/signOut" class="auth-link ml-2">
+            <span class="text-dark">|</span>
+            <span class="ml-2">Log out</span>
+          </a>
         </div>
       </div>
-
-      <a
-        *ngIf="authService.isLoggedIn === true"
-        routerLink="/admin/auth/signOut"
-        class="auth-link"
-      >
-        <span class="text-dark">|</span>
-        <span class="ml-2">Log out</span>
-      </a>
-      <!-- </div> -->
     </div>
   </div>
 </nav>
