@@ -30,6 +30,8 @@ export class AddListButtonComponent implements OnInit {
 
     dialogConfig.data = {
       dialogTitle: 'Add a new List',
+      name: '',
+      description: '',
     };
 
     const dialogRef = this.dialog.open(ListDialogComponent, {
@@ -40,7 +42,7 @@ export class AddListButtonComponent implements OnInit {
     const uid = JSON.parse(localStorage.getItem('user')).uid;
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.dashboardService?.SetListData(data as List, uid);
+        this.dashboardService?.setListData(data as List, uid);
       }
     });
   }

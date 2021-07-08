@@ -18,9 +18,9 @@ export class ListDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<ListDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    this.title = data.dialogTitle;
-    this.description = '';
-    this.name = '';
+    this.title = data?.dialogTitle;
+    this.name = data?.name ? data.name : null;
+    this.description = data?.description ? data.description : null;
   }
 
   ngOnInit(): void {

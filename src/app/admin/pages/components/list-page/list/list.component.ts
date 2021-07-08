@@ -4,7 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { DashboardService } from '@app/core/services';
 import { List } from '@app/core/models';
-import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-list',
