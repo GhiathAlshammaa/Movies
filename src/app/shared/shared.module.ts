@@ -8,6 +8,7 @@ import { MovieComponent, MoviesSliderComponent } from './components';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { ReplaceUnderscorePipe } from '@app/core/utils/replace-underscore.pipe';
 import { BackButtonDirective } from './directive';
+import { MaterialModule } from '@app/material/material.module';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -24,6 +25,7 @@ import { BackButtonDirective } from './directive';
     ReactiveFormsModule,
     RouterModule,
     NgImageSliderModule,
+    MaterialModule
   ],
   exports: [
     CommonModule,

@@ -51,3 +51,15 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+button > mat-icon {
+    transform: scale(0.5);
+}
+
+.size {
+    transform: scale(1);
+  }
+
+  mat-mini-fab {
+    transform: scale(0.5);
+  }

@@ -4,6 +4,8 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
+import { catchError, tap } from 'rxjs/operators';
 import { List } from '../models';
 
 @Injectable({
@@ -12,6 +14,17 @@ import { List } from '../models';
 export class DashboardService {
   constructor(public afs: AngularFirestore) {}
 
+  updateListShowValue(showValue, lid) {
+    const listData: List = {
+      show: showValue,
+    };
+    this.afs
+      .collection('lists')
+      .doc(lid)
+      .update(listData)
+      .then(() => console.log(`The List ${lid} has updated!`))
+      .catch((error) => console.log(`Error: ${error}`));
+  }
   updateListData(list, lid) {
     const listData: List = {
       name: list.name,
@@ -32,6 +45,7 @@ export class DashboardService {
       listId: lid,
       name: list.name,
       description: list.description,
+      show: false,
     };
     return listRef.set(listData, {
       merge: true,

@@ -3,4 +3,5 @@ export interface List {
   listId?: string;
   name?: string;
   description?: string;
+  show?: boolean;
 }

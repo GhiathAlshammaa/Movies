@@ -67,7 +67,7 @@
       <a class="view" [routerLink]="['/movies', movie.id]" *ngIf="!backTitle"
         >View details &raquo;</a
       >
-      <div class="float-right">
+      <div class="float-right d-flex align-items-center">
         <small
           class="badge badge-pill badge-info mr-1"
           *ngIf="movie.sinceHowManyDays"
@@ -76,6 +76,7 @@
           {{ movie.sinceHowManyDays }}
           <i class="fa fa-calendar-check-o fa-1x"></i>
         </small>
+
         <small
           class="badge badge-pill badge-warning"
           *ngIf="movie.vote_average"
@@ -83,6 +84,23 @@
         >
           {{ movie.vote_average }}
           <i class="fa fa-star fa-1x"></i>
+        </small>
+
+        <small class="ml-2">
+          <div class="example-button-container">
+            <button
+              mat-mini-fab
+              color="dark"
+              aria-label="Example icon button with a menu icon"
+            >
+              <mat-icon
+                aria-hidden="false"
+                aria-label="Example home icon"
+                class="size"
+                >add</mat-icon
+              >
+            </button>
+          </div>
         </small>
       </div>
     </div>
